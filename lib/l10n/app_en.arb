@@ -1,0 +1,31 @@
+{
+
+
+"language" : "Language",
+"arabic" : "Arabic" ,
+"english" : "English" ,
+"theme" : "Theme" ,
+"dark" : "Dark" ,
+"light" : "Light" ,
+"home" : "Home",
+"map" : "Map",
+"favorite" : "Favorite",
+"profile" : "Profile",
+"email" : "Email",
+"password" : "Password",
+"forget_password" : "Forget Password?",
+"login" : "Login",
+"dontHaveAccount": "Don't have an account? ",
+"create_account" : "Create Account",
+"or" : "Or",
+"login_with_google" : "Login With Google",
+"register" : "Register",
+"name" : "Name",
+"re_password" : "Re Password",
+"already_have_account" : "Already Have Account ?",
+"forget_password" : "Forget Password?",
+"reset_password" : "Reset Password",
+"forge_password" : "Forget Password"
+
+
+}
