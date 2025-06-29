@@ -1,9 +1,9 @@
-import 'package:event_planning/providers/app_language_provider.dart';
+import 'package:event_planning/l10n/app_localizations.dart';
 import 'package:event_planning/providers/app_theme_provider.dart';
 import 'package:event_planning/utils/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+
 class ThemeBottomSheet extends StatefulWidget {
   const ThemeBottomSheet({super.key});
 
@@ -22,23 +22,23 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           InkWell(
-            onTap:(){
-           themeProvider.changeTheme(ThemeMode.dark);
-
-            },
-              child: themeProvider.isDarkMod()?
-              getSelectedItemWidget(AppLocalizations.of(context)!.dark):
-              getUnselectedItemWidget(AppLocalizations.of(context)!.dark)
+              onTap: () {
+                themeProvider.changeTheme(ThemeMode.dark);
+              },
+              child: themeProvider.isDarkMod()
+                  ? getSelectedItemWidget(AppLocalizations.of(context)!.dark)
+                  : getUnselectedItemWidget(
+                      AppLocalizations.of(context)!.dark)),
+          SizedBox(
+            height: height * 0.02,
           ),
-          SizedBox(height: height *0.02,),
           InkWell(
-            onTap: (){
+            onTap: () {
               themeProvider.changeTheme(ThemeMode.light);
-
             },
-            child: themeProvider.isDarkMod()?
-getUnselectedItemWidget(AppLocalizations.of(context)!.light):
-  getSelectedItemWidget(AppLocalizations.of(context)!.light),
+            child: themeProvider.isDarkMod()
+                ? getUnselectedItemWidget(AppLocalizations.of(context)!.light)
+                : getSelectedItemWidget(AppLocalizations.of(context)!.light),
           ),
         ],
       ),
@@ -49,25 +49,29 @@ getUnselectedItemWidget(AppLocalizations.of(context)!.light):
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(text,
+        Text(
+          text,
           style: TextStyle(
               color: AppColors.primaryLight,
               fontWeight: FontWeight.bold,
-              fontSize: 22
-          ),),
-       const Icon(Icons.check, color: AppColors.primaryLight,
-          size: 25,)
+              fontSize: 22),
+        ),
+        const Icon(
+          Icons.check,
+          color: AppColors.primaryLight,
+          size: 25,
+        )
       ],
     );
   }
 
-    Widget getUnselectedItemWidget( String text){
-return Text(text,
-  style: TextStyle(
-      color: AppColors.primaryDark,
-      fontWeight: FontWeight.bold,
-      fontSize: 22
-  ),);
-    }
+  Widget getUnselectedItemWidget(String text) {
+    return Text(
+      text,
+      style: TextStyle(
+          color: AppColors.primaryDark,
+          fontWeight: FontWeight.bold,
+          fontSize: 22),
+    );
+  }
 }
-
