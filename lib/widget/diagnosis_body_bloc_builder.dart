@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../cubits/diagnosis_cubit.dart';
 import '../cubits/diagnosis_state.dart';
-import '../utils/app_colors.dart';
-import 'picked_img_bloc_selector.dart';
+import 'diagnosis_detail_widget.dart';
+import 'diagnosis_error_widget.dart';
+import 'diagnosis_loading_widget.dart';
 
 class DiagnosisBodyBlocBuilder extends StatelessWidget {
   const DiagnosisBodyBlocBuilder({super.key});
@@ -12,53 +13,25 @@ class DiagnosisBodyBlocBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<DiagnosisCubit, DiagnosisState>(
-        buildWhen: (_, current) =>
-            current.status == DiagnosisStateStatus.predictLoading ||
-            current.status == DiagnosisStateStatus.predictSuccess ||
-            current.status == DiagnosisStateStatus.predictFailure,
-        builder: (_, state) {
-          return state.status == DiagnosisStateStatus.predictLoading
-              ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  spacing: 20,
-                  children: [
-                    CircularProgressIndicator(color: AppColors.primaryLight),
-                    Text(
-                      "Analyzing... Please wait",
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.primaryLight),
-                    )
-                  ],
-                )
-              : Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  spacing: 20,
-                  children: [
-                    const PickedImgBlocSelector(),
-                    SizedBox(height: 20),
-                    Icon(
-                      Icons.warning_amber_rounded,
-                      size: 120,
-                      color: AppColors.redColor,
-                    ),
-                    ElevatedButton.icon(
-                      onPressed: () => Navigator.pop(context),
-                      icon: Icon(Icons.home, color: AppColors.whiteColor),
-                      label: Text("Back to Home",
-                          style: TextStyle(color: AppColors.whiteColor)),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primaryLight,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-        });
+      buildWhen: (_, current) => _buildWhen(current.status),
+      builder: (_, state) {
+        switch (state.status) {
+          case DiagnosisStateStatus.predictLoading:
+            return const DiagnosisLoadingWidget();
+          case DiagnosisStateStatus.predictSuccess:
+            return DiagnosisDetailWidget(prediction: state.prediction!);
+          case DiagnosisStateStatus.predictFailure:
+            return DiagnosisErrorWidget(error: state.errorMessage!);
+          default:
+            return const DiagnosisLoadingWidget();
+        }
+      },
+    );
+  }
+
+  bool _buildWhen(DiagnosisStateStatus status) {
+    return status == DiagnosisStateStatus.predictLoading ||
+        status == DiagnosisStateStatus.predictSuccess ||
+        status == DiagnosisStateStatus.predictFailure;
   }
 }
