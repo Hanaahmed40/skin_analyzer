@@ -13,10 +13,15 @@ class PickedImgBlocSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocSelector<MainCubit, MainState, File?>(
       selector: (state) => state.pickedImg,
-      builder: (context, pickedImg) => CircleAvatar(
-        radius: 64,
-        backgroundImage: FileImage(pickedImg!) as ImageProvider,
-      ),
+      builder: (context, pickedImg) => pickedImg == null
+          ? const CircleAvatar(
+              radius: 120,
+              child: Icon(Icons.person, size: 80),
+            )
+          : CircleAvatar(
+              radius: 120,
+              backgroundImage: FileImage(pickedImg) as ImageProvider,
+            ),
     );
   }
 }
