@@ -3,8 +3,8 @@ import 'dart:io' show File;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../main_cubit.dart';
-import '../main_state.dart';
+import '../cubits/main_cubit.dart';
+import '../cubits/main_state.dart';
 
 class PickedImgBlocSelector extends StatelessWidget {
   const PickedImgBlocSelector({super.key});

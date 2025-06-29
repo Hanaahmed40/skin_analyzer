@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocListener;
 
 import '../core/router/routes.dart';
-import '../main_cubit.dart';
-import '../main_state.dart';
+import '../cubits/main_cubit.dart';
+import '../cubits/main_state.dart';
 
 class ImagePickerBlocListener extends StatelessWidget {
   const ImagePickerBlocListener({super.key});
