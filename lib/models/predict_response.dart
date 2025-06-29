@@ -4,7 +4,7 @@ class PredictResponse {
       description,
       recommendation,
       suggestedTreatment;
-  final int confidence;
+  final double confidence;
 
   PredictResponse({
     required this.disease,

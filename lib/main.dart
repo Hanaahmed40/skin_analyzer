@@ -1,3 +1,4 @@
+import 'package:event_planning/core/utils/functions/check_if_user_is_logged_in.dart';
 import 'package:event_planning/di.dart';
 import 'package:event_planning/l10n/app_localizations.dart';
 import 'package:event_planning/providers/app_language_provider.dart';
@@ -20,6 +21,7 @@ Future<void> main() async {
     anonKey:
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBoampsZ3hrd2NrZWt6dHJndWJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTExODY3NjIsImV4cCI6MjA2Njc2Mjc2Mn0.qfIBsaTEAOsK0J7I5BI7W_kvjTRzBgDvY6qfiz1wJ8g',
   );
+  await checkIfIsUserLoggedIn();
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => AppLanguageProvider()),
     ChangeNotifierProvider(create: (context) => AppThemeProvider()),
