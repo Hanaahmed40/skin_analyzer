@@ -1,4 +1,7 @@
+import 'package:event_planning/auth/login/presentation/cubits/login_cubit.dart';
+import 'package:event_planning/di.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../forget_password/forget_screen.dart';
 import '../../auth/login/presentation/register_screen.dart';
@@ -38,7 +41,10 @@ class AppRouter {
 
   static MaterialPageRoute<dynamic> _loginRoute() {
     return MaterialPageRoute(
-      builder: (_) => const LoginScreen(),
+      builder: (_) => BlocProvider(
+        create: (context) => getIt.get<LoginCubit>(),
+        child: const LoginScreen(),
+      ),
     );
   }
 

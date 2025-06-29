@@ -5,10 +5,14 @@ import 'package:event_planning/providers/app_theme_provider.dart';
 import 'package:event_planning/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'core/router/app_router.dart';
-
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(
+    url: 'https://phjjlgxkwckekztrgubf.supabase.co',
+    anonKey: '<prefer publishable key instead of anon key for mobile and desktop apps>',
+  );
   setupDI();
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => AppLanguageProvider()),

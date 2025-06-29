@@ -1,6 +1,6 @@
 import 'package:event_planning/core/utils/functions/execute_and_handle_errors.dart';
 
-import '../../../../core/supabase/supabase_request_result.dart';
+import 'package:event_planning/core/supabase/supabase_request_result.dart';
 import '../data_source/auth_remote_data_source.dart';
 import '../models/auth_params.dart';
 

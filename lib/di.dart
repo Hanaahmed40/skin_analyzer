@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'auth/login/presentation/cubits/login_cubit.dart';
 
 import 'auth/login/data/data_source/auth_remote_data_source.dart';
 import 'auth/login/data/repository/auth_repo.dart';
@@ -14,7 +15,7 @@ void setupDI() {
   getIt.registerLazySingleton<GoTrueClient>(
       () => getIt.get<SupabaseClient>().auth);
   getIt.registerLazySingleton<InternetConnection>(() => InternetConnection());
-
+  getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt.get<LoginRepo>()));
   // Registering core
   getIt.registerLazySingleton<InternetChecker>(
       () => InternetChecker(getIt.get<InternetConnection>()));

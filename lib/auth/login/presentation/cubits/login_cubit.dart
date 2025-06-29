@@ -23,19 +23,19 @@ class LoginCubit extends Cubit<LoginState> {
       ),
     );
     switch (result) {
-      case SupabaseRequestSuccess<String?>(:final data):
+      case SupabaseRequestSuccess(:final data):
         emit(state.copyWith(
           status: LoginStateStatus.success,
           userId: data,
         ));
-        break;
-      case SupabaseRequestFailure<String?>(:final errorModel):
+
+      case SupabaseRequestFailure(:final errorModel):
         emit(state.copyWith(
           status: LoginStateStatus.failure,
           errorMessage: errorModel.message,
         ));
-        break;
-    }
+        default:
+break;}
   }
 
   void togglePasswordVisibility() {
