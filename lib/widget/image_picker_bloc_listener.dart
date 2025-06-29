@@ -12,7 +12,7 @@ class ImagePickerBlocListener extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<MainCubit, MainState>(
-      listenWhen: (_, state) => state.pickedImg != null,
+      listenWhen: (_, state) => state.status == MainStateStatus.pickImg,
       listener: (_, current) {
         if (current.pickedImg != null) {
           context.pushNamed(Routes.diagnosis);
