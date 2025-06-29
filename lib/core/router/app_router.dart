@@ -7,6 +7,8 @@ import '../../forget_password/forget_screen.dart';
 import '../../auth/login/presentation/register_screen.dart';
 import '../../auth/login/presentation/login_screen.dart';
 import '../../ui/home_screen/home_screen.dart';
+import '../../ui/home_screen/pages/analysisPage.dart';
+import '../../ui/home_screen/pages/diagnosisPage.dart';
 import '../utils/app_utils.dart';
 import 'routes.dart';
 
@@ -29,6 +31,12 @@ class AppRouter {
 
       case Routes.home:
         return _homeRoute();
+
+      case Routes.analysis:
+        return MaterialPageRoute(builder: (_) => AnalysisPage());
+
+      case Routes.diagnosis:
+        return MaterialPageRoute(builder: (_) => DiagnosisPage());
 
       default:
         return _unFoundRoute();
