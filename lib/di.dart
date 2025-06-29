@@ -1,4 +1,6 @@
+import 'package:event_planning/main_cubit.dart';
 import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'auth/login/presentation/cubits/login_cubit.dart';
@@ -15,7 +17,8 @@ void setupDI() {
   getIt.registerLazySingleton<GoTrueClient>(
       () => getIt.get<SupabaseClient>().auth);
   getIt.registerLazySingleton<InternetConnection>(() => InternetConnection());
-  getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt.get<LoginRepo>()));
+  getIt.registerLazySingleton<ImagePicker>(() => ImagePicker());
+
   // Registering core
   getIt.registerLazySingleton<InternetChecker>(
       () => InternetChecker(getIt.get<InternetConnection>()));
@@ -31,4 +34,8 @@ void setupDI() {
       () => LoginRepo(getIt.get<LoginRemoteDataSource>()));
   getIt.registerLazySingleton<RegisterRepo>(
       () => RegisterRepo(getIt.get<RegisterRemoteDataSource>()));
+
+  // Registering Cubits
+  getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt.get<LoginRepo>()));
+  getIt.registerFactory<MainCubit>(() => MainCubit());
 }
