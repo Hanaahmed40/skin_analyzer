@@ -35,7 +35,8 @@ extension AppNavigator on BuildContext {
 extension ShowDialog on BuildContext {
   Future<void> showAppDialog({
     String? title,
-    required String content,
+    String? content,
+    Widget? contentWidget,
     String confirmText = "OK",
     VoidCallback? onConfirm,
     bool dismissible = true,
@@ -44,8 +45,17 @@ extension ShowDialog on BuildContext {
       context: this,
       barrierDismissible: dismissible,
       builder: (context) => AlertDialog(
-        title: title != null ? Text(title) : null,
-        content: Text(content),
+        title: title != null
+            ? Text(
+                title,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            : null,
+        content: contentWidget ?? (content != null ? Text(content) : null),
         actions: [
           TextButton(
             onPressed: () {
