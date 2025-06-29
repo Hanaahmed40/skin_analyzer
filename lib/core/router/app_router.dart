@@ -1,4 +1,5 @@
 import 'package:event_planning/auth/login/presentation/cubits/login_cubit.dart';
+import 'package:event_planning/cubits/diagnosis_cubit.dart';
 import 'package:event_planning/di.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,7 +37,12 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => AnalysisPage());
 
       case Routes.diagnosis:
-        return MaterialPageRoute(builder: (_) => DiagnosisPage());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider<DiagnosisCubit>(
+                  create: (context) =>
+                      getIt.get<DiagnosisCubit>()..fetchRandomPrediction(),
+                  child: DiagnosisPage(),
+                ));
 
       default:
         return _unFoundRoute();
