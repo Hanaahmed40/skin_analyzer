@@ -47,11 +47,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 height: height * 0.33,
                 fit: BoxFit.contain,
               ),
-              CustomTextField(
-                hintText: AppLocalizations.of(context)!.name,
-                prefix: Icon(Icons.person),
-                obscureText: false,
-              ),
               SizedBox(
                 height: height * 0.02,
               ),
