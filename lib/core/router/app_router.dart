@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../forget_password/forget_screen.dart';
-import '../../register/register_screen.dart';
+import '../../auth/login/presentation/register_screen.dart';
 import '../../auth/login/presentation/login_screen.dart';
 import '../../ui/home_screen/home_screen.dart';
 import 'routes.dart';
