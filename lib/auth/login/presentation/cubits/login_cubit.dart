@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/supabase/supabase_request_result.dart';
-import '../../data/models/auth_params.dart';
+import '../../../../models/auth_params.dart';
 import '../../data/repository/auth_repo.dart';
 import 'login_state.dart';
 

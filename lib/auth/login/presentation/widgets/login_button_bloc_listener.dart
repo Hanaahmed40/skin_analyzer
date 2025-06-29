@@ -57,7 +57,7 @@ class LoginButtonBlocListener extends StatelessWidget {
     await SecureStorageHelper.setSecuredString(CacheKeys.userId, state.userId!);
     context.popTop();
     await Future.delayed(Duration(milliseconds: 675));
-    context.pushNamed(Routes.home);
+    context.pushReplacementNamed(Routes.home);
   }
 
   bool _listenWhen(LoginStateStatus status) =>

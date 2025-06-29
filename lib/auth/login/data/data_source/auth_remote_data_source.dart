@@ -1,6 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../models/auth_params.dart';
+import '../../../../models/auth_params.dart';
 
 abstract class AuthRemoteDataSource {
   Future<AuthResponse> auth(AuthParams params);

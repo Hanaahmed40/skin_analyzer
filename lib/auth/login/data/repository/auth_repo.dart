@@ -2,7 +2,7 @@ import 'package:event_planning/core/utils/functions/execute_and_handle_errors.da
 
 import 'package:event_planning/core/supabase/supabase_request_result.dart';
 import '../data_source/auth_remote_data_source.dart';
-import '../models/auth_params.dart';
+import '../../../../models/auth_params.dart';
 
 abstract class AuthRepo {
   final AuthRemoteDataSource remoteDataSource;
