@@ -67,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: AppColors.whiteColor,
                 size: 35,
               ),
-              onPressed: () => onTabTapped(1),
+              onPressed: () => onTabTapped(0),
             ),
 
             SizedBox(width: 40), // Space for FAB
@@ -77,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: AppColors.whiteColor,
                 size: 35,
               ),
-              onPressed: () => onTabTapped(2),
+              onPressed: () => onTabTapped(1),
             ),
           ],
         ),

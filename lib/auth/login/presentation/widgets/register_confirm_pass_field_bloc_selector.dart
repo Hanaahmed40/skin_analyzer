@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../cubits/register_cubit.dart';
-import '../../../../cubits/register_state.dart';
+import 'package:event_planning/cubits/register_cubit.dart';
+import 'package:event_planning/cubits/register_state.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../widget/custom_text_field.dart';
 
@@ -17,14 +17,17 @@ class RegisterConfirmPassFieldBlocSelector extends StatelessWidget {
         controller: context.read<RegisterCubit>().confirmPassController,
         hintText: AppLocalizations.of(context)!.re_password,
         suffix: IconButton(
-            onPressed: () {
-              context.read<RegisterCubit>().toggleConfirmPassVisibility();
-            },
-            icon: Icon(isConfirmPassObscure
+          onPressed: () {
+            context.read<RegisterCubit>().toggleConfirmPassVisibility();
+          },
+          icon: Icon(
+            isConfirmPassObscure
                 ? Icons.visibility_sharp
-                : Icons.visibility_off_sharp)),
+                : Icons.visibility_off_sharp,
+          ),
+        ),
         prefix: Icon(Icons.lock_sharp),
-        obscureText: true,
+        obscureText: isConfirmPassObscure,
       ),
     );
   }

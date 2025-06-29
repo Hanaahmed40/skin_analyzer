@@ -1,10 +1,10 @@
 import 'package:event_planning/core/supabase/supabase_request_result.dart';
 import 'package:event_planning/cubits/register_state.dart';
-import 'package:event_planning/models/auth_params.dart';
+import 'package:event_planning/models/auth_params.dart' as model_params;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../auth/login/data/repository/auth_repo.dart';
+import 'package:event_planning/auth/login/data/repository/auth_repo.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   final RegisterRepo _registerRepo;
@@ -17,10 +17,12 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   void register() async {
     emit(state.copyWith(status: RegisterStateStatus.loading));
-    final result = await _registerRepo.auth(AuthParams(
-      email: emailController.text.trim(),
-      password: passwordController.text,
-    ));
+    final result = await _registerRepo.auth(
+      model_params.AuthParams(
+        email: emailController.text.trim(),
+        password: passwordController.text,
+      ),
+    );
     switch (result) {
       case SupabaseRequestSuccess(:final data):
         emit(state.copyWith(status: RegisterStateStatus.success, userId: data));
