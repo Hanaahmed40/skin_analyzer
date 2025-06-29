@@ -16,13 +16,13 @@ enum MainStateStatus {
 class MainState {
   final MainStateStatus status;
   final File? pickedImg;
-  final List<Tip>? tips;
+  final Tip? tip;
   final String? errorMessage;
 
   MainState({
     required this.status,
     this.pickedImg,
-    this.tips,
+    this.tip,
     this.errorMessage,
   });
 
@@ -33,13 +33,13 @@ class MainState {
   MainState copyWith({
     MainStateStatus? status,
     File? pickedImg,
-    List<Tip>? tips,
+    Tip? tip,
     String? errorMessage,
   }) {
     return MainState(
       status: status ?? this.status,
       pickedImg: pickedImg ?? this.pickedImg,
-      tips: tips ?? this.tips,
+      tip: tip ?? tip,
       errorMessage: errorMessage ?? this.errorMessage,
     );
   }
