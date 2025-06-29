@@ -1,11 +1,14 @@
 import 'package:event_planning/core/helpers/extensions.dart';
 import 'package:event_planning/l10n/app_localizations.dart';
-import 'package:event_planning/ui/home_screen/home_screen.dart';
 import 'package:event_planning/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:event_planning/widget/custom_text_field.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/router/routes.dart';
+import 'cubits/login_cubit.dart';
+import 'widgets/login_button_bloc_listener.dart';
+import 'widgets/login_pass_text_field_bloc_selector.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -38,20 +41,15 @@ class _LoginScreenState extends State<LoginScreen> {
               // SizedBox(height: height*0.05,),
 
               CustomTextField(
+                controller: context.read<LoginCubit>().emailController,
                 hintText: AppLocalizations.of(context)!.email,
-                prefixIcon: Icons.email_sharp,
+                prefix: Icon(Icons.email_sharp),
                 obscureText: false,
               ),
               SizedBox(
                 height: height * 0.02,
               ),
-              CustomTextField(
-                hintText: AppLocalizations.of(context)!.password,
-                suffixIcon: Icons.visibility_off_sharp,
-                prefixIcon: Icons.lock_sharp,
-                obscureText: true,
-                isPasswordField: true,
-              ),
+              const LoginPassTextFieldBlocSelector(),
               SizedBox(
                 height: height * 0.02,
               ),
@@ -72,22 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: height * 0.02,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(HomeScreen.routeName);
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primaryLight, // لون الزر
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16), // زوايا مستديرة
-                  ),
-                  padding: EdgeInsets.symmetric(vertical: 15), // ارتفاع الزر
-                ),
-                child: Text(
-                  AppLocalizations.of(context)!.login, // ترجمة زر تسجيل الدخول
-                  style: TextStyle(fontSize: 20, color: AppColors.whiteColor),
-                ),
-              ),
+              const LoginButtonBlocListener(),
               SizedBox(
                 height: height * 0.02,
               ),

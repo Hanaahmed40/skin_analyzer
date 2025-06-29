@@ -49,7 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               CustomTextField(
                 hintText: AppLocalizations.of(context)!.name,
-                prefixIcon: Icons.person,
+                prefix: Icon(Icons.person),
                 obscureText: false,
               ),
               SizedBox(
@@ -57,7 +57,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               CustomTextField(
                 hintText: AppLocalizations.of(context)!.email,
-                prefixIcon: Icons.email_sharp,
+                prefix: Icon(Icons.email_sharp),
                 obscureText: false,
               ),
               SizedBox(
@@ -65,20 +65,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               CustomTextField(
                 hintText: AppLocalizations.of(context)!.password,
-                suffixIcon: Icons.visibility_off_sharp,
-                prefixIcon: Icons.lock_sharp,
+                suffix: Icon(Icons.visibility_off_sharp),
+                prefix: Icon(Icons.lock_sharp),
                 obscureText: true,
-                isPasswordField: true,
               ),
               SizedBox(
                 height: height * 0.02,
               ),
               CustomTextField(
                 hintText: AppLocalizations.of(context)!.re_password,
-                suffixIcon: Icons.visibility_off_sharp,
-                prefixIcon: Icons.lock_sharp,
+                suffix: Icon(Icons.visibility_off_sharp),
+                prefix: Icon(Icons.lock_sharp),
                 obscureText: true,
-                isPasswordField: true,
               ),
               SizedBox(
                 height: height * 0.02,

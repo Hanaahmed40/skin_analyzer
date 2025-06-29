@@ -40,7 +40,7 @@ class ForgetScreen extends StatelessWidget {
               SizedBox(height: height * 0.03),
               CustomTextField(
                 hintText: AppLocalizations.of(context)!.email,
-                prefixIcon: Icons.email_sharp,
+                prefix: Icon(Icons.email_sharp),
                 obscureText: false,
               ),
               SizedBox(height: height * 0.01),
