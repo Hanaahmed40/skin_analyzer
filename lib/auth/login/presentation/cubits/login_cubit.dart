@@ -1,10 +1,10 @@
-import 'package:event_planning/auth/login/presentation/cubits/login_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/supabase/supabase_request_result.dart';
 import '../../data/models/auth_params.dart';
 import '../../data/repository/auth_repo.dart';
+import 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   final LoginRepo _loginRepo;
@@ -36,6 +36,13 @@ class LoginCubit extends Cubit<LoginState> {
         ));
         break;
     }
+  }
+
+  void togglePasswordVisibility() {
+    emit(state.copyWith(
+      status: LoginStateStatus.togglePasswordObscure,
+      isPasswordObscure: !state.isPasswordObscure,
+    ));
   }
 
   @override
