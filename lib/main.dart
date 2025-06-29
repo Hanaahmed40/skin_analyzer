@@ -1,3 +1,4 @@
+import 'package:event_planning/di.dart';
 import 'package:event_planning/l10n/app_localizations.dart';
 import 'package:event_planning/providers/app_language_provider.dart';
 import 'package:event_planning/providers/app_theme_provider.dart';
@@ -8,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'core/router/app_router.dart';
 
 void main() {
+  setupDI();
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => AppLanguageProvider()),
     ChangeNotifierProvider(create: (context) => AppThemeProvider()),

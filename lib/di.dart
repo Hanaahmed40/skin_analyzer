@@ -28,4 +28,6 @@ void setupDI() {
   // Registering Repositories
   getIt.registerLazySingleton<LoginRepo>(
       () => LoginRepo(getIt.get<LoginRemoteDataSource>()));
+  getIt.registerLazySingleton<RegisterRepo>(
+      () => RegisterRepo(getIt.get<RegisterRemoteDataSource>()));
 }
