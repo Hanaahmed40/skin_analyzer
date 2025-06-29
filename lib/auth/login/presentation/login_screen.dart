@@ -5,7 +5,7 @@ import 'package:event_planning/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:event_planning/widget/custom_text_field.dart';
 
-import '../../core/router/routes.dart';
+import '../../../core/router/routes.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
