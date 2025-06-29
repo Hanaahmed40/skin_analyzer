@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'bloc_observer.dart';
 import 'core/router/app_router.dart';
-import 'main_cubit.dart';
+import 'cubits/main_cubit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
