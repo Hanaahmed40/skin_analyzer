@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../utils/app_colors.dart';
 
+extension IsNullOrEmpty on String? {
+  bool get isNullOrEmpty => this == null || this!.isEmpty;
+}
+
 extension AppNavigator on BuildContext {
   Future<dynamic> pushNamed(String routeName, {Object? arguments}) {
     return Navigator.pushNamed(this, routeName, arguments: arguments);
