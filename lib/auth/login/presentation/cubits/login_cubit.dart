@@ -34,8 +34,9 @@ class LoginCubit extends Cubit<LoginState> {
           status: LoginStateStatus.failure,
           errorMessage: errorModel.message,
         ));
-        default:
-break;}
+      default:
+        break;
+    }
   }
 
   void togglePasswordVisibility() {
