@@ -44,7 +44,7 @@ void setupDI() {
 
   // Registering Cubits
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt.get<LoginRepo>()));
-  getIt.registerFactory<MainCubit>(() => MainCubit());
+  getIt.registerFactory<MainCubit>(() => MainCubit(getIt.get<MainRepo>()));
   getIt.registerFactory<DiagnosisCubit>(
       () => DiagnosisCubit(getIt.get<MainRepo>()));
 }
