@@ -3,7 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../models/auth_params.dart';
 
 abstract class AuthRemoteDataSource {
-  Future<void> auth(AuthParams params);
+  Future<AuthResponse> auth(AuthParams params);
 }
 
 class LoginRemoteDataSource implements AuthRemoteDataSource {
@@ -12,8 +12,8 @@ class LoginRemoteDataSource implements AuthRemoteDataSource {
   LoginRemoteDataSource(this._supabaseAuth);
 
   @override
-  Future<void> auth(AuthParams params) async {
-    await _supabaseAuth.signInWithPassword(
+  Future<AuthResponse> auth(AuthParams params) {
+    return _supabaseAuth.signInWithPassword(
       email: params.email,
       password: params.password,
     );
@@ -26,8 +26,8 @@ class RegisterRemoteDataSource implements AuthRemoteDataSource {
   RegisterRemoteDataSource(this._supabaseAuth);
 
   @override
-  Future<void> auth(AuthParams params) async {
-    await _supabaseAuth.signUp(
+  Future<AuthResponse> auth(AuthParams params) {
+    return _supabaseAuth.signUp(
       email: params.email,
       password: params.password,
     );

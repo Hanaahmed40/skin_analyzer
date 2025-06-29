@@ -9,7 +9,7 @@ abstract class AuthRepo {
 
   AuthRepo(this.remoteDataSource);
 
-  Future<SupabaseRequestResult<void>> auth(AuthParams params);
+  Future<SupabaseRequestResult<String?>> auth(AuthParams params);
 }
 
 class LoginRepo extends AuthRepo {
@@ -18,9 +18,11 @@ class LoginRepo extends AuthRepo {
   LoginRepo(this._remoteDataSource) : super(_remoteDataSource);
 
   @override
-  Future<SupabaseRequestResult<void>> auth(AuthParams params) {
-    return executeAndHandleErrors<void>(
-        () async => await _remoteDataSource.auth(params));
+  Future<SupabaseRequestResult<String?>> auth(AuthParams params) {
+    return executeAndHandleErrors<String?>(() async {
+      final authResponse = await _remoteDataSource.auth(params);
+      return authResponse.user!.id;
+    });
   }
 }
 
@@ -30,8 +32,10 @@ class RegisterRepo extends AuthRepo {
   RegisterRepo(this._remoteDataSource) : super(_remoteDataSource);
 
   @override
-  Future<SupabaseRequestResult<void>> auth(AuthParams params) {
-    return executeAndHandleErrors<void>(
-        () async => await _remoteDataSource.auth(params));
+  Future<SupabaseRequestResult<String?>> auth(AuthParams params) {
+    return executeAndHandleErrors<String?>(() async {
+      final authResponse = await _remoteDataSource.auth(params);
+      return authResponse.user!.id;
+    });
   }
 }
