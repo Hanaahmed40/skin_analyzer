@@ -8,6 +8,7 @@ import 'package:event_planning/widget/custom_text_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/router/routes.dart';
+import 'widgets/register_button_bloc_listener.dart';
 import 'widgets/register_confirm_pass_field_bloc_selector.dart';
 import 'widgets/register_pass_field_bloc_selector.dart';
 
@@ -66,23 +67,7 @@ class RegisterScreen extends StatelessWidget {
               SizedBox(
                 height: height * 0.02,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(HomeScreen.routeName);
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primaryLight, // لون الزر
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16), // زوايا مستديرة
-                  ),
-                  padding: EdgeInsets.symmetric(vertical: 15), // ارتفاع الزر
-                ),
-                child: Text(
-                  AppLocalizations.of(context)!
-                      .create_account, // ترجمة زر تسجيل الدخول
-                  style: TextStyle(fontSize: 20, color: AppColors.whiteColor),
-                ),
-              ),
+              const RegisterButtonBlocListener(),
               SizedBox(
                 height: height * 0.02,
               ),
