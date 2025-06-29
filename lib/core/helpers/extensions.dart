@@ -30,7 +30,6 @@ extension AppNavigator on BuildContext {
 
 extension ShowDialog on BuildContext {
   Future<void> showAppDialog({
-    required BuildContext context,
     String? title,
     required String content,
     String confirmText = "OK",
@@ -38,7 +37,7 @@ extension ShowDialog on BuildContext {
     bool dismissible = true,
   }) {
     return showDialog(
-      context: context,
+      context: this,
       barrierDismissible: dismissible,
       builder: (context) => AlertDialog(
         title: title != null ? Text(title) : null,
