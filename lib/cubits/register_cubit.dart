@@ -33,6 +33,20 @@ class RegisterCubit extends Cubit<RegisterState> {
     }
   }
 
+  void togglePassVisibility() {
+    emit(state.copyWith(
+      status: RegisterStateStatus.toggleVisibility,
+      isPasswordObscure: !state.isPasswordObscure,
+    ));
+  }
+
+  void toggleConfirmPassVisibility() {
+    emit(state.copyWith(
+      status: RegisterStateStatus.toggleConfirmPassVisibility,
+      isConfirmPassObscure: !state.isConfirmPassObscure,
+    ));
+  }
+
   @override
   Future<void> close() {
     emailController.dispose();

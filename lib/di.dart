@@ -1,4 +1,5 @@
 import 'package:event_planning/cubits/diagnosis_cubit.dart';
+import 'package:event_planning/cubits/register_cubit.dart';
 import 'package:event_planning/data_source/main_remote_data_source.dart';
 import 'package:event_planning/cubits/main_cubit.dart';
 import 'package:event_planning/repositories/main_repo.dart';
@@ -44,6 +45,8 @@ void setupDI() {
 
   // Registering Cubits
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt.get<LoginRepo>()));
+  getIt.registerFactory<RegisterCubit>(
+      () => RegisterCubit(getIt.get<RegisterRepo>()));
   getIt.registerFactory<MainCubit>(() => MainCubit(getIt.get<MainRepo>()));
   getIt.registerFactory<DiagnosisCubit>(
       () => DiagnosisCubit(getIt.get<MainRepo>()));

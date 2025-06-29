@@ -1,20 +1,19 @@
 import 'package:event_planning/core/helpers/extensions.dart';
+import 'package:event_planning/cubits/register_cubit.dart';
 import 'package:event_planning/l10n/app_localizations.dart';
 import 'package:event_planning/ui/home_screen/home_screen.dart';
 import 'package:event_planning/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:event_planning/widget/custom_text_field.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/router/routes.dart';
+import 'widgets/register_confirm_pass_field_bloc_selector.dart';
+import 'widgets/register_pass_field_bloc_selector.dart';
 
-class RegisterScreen extends StatefulWidget {
+class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
 
-  @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
-}
-
-class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -51,6 +50,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 height: height * 0.02,
               ),
               CustomTextField(
+                controller: context.read<RegisterCubit>().emailController,
                 hintText: AppLocalizations.of(context)!.email,
                 prefix: Icon(Icons.email_sharp),
                 obscureText: false,
@@ -58,21 +58,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               SizedBox(
                 height: height * 0.02,
               ),
-              CustomTextField(
-                hintText: AppLocalizations.of(context)!.password,
-                suffix: Icon(Icons.visibility_off_sharp),
-                prefix: Icon(Icons.lock_sharp),
-                obscureText: true,
-              ),
+              const RegisterPassFieldBlocSelector(),
               SizedBox(
                 height: height * 0.02,
               ),
-              CustomTextField(
-                hintText: AppLocalizations.of(context)!.re_password,
-                suffix: Icon(Icons.visibility_off_sharp),
-                prefix: Icon(Icons.lock_sharp),
-                obscureText: true,
-              ),
+              const RegisterConfirmPassFieldBlocSelector(),
               SizedBox(
                 height: height * 0.02,
               ),
