@@ -2,10 +2,9 @@ import 'package:event_planning/core/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/helpers/cache_keys.dart';
-import '../../../../core/helpers/secure_storage_helper.dart';
 import '../../../../core/router/routes.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../models/user_model.dart';
 import '../../../../utils/app_colors.dart';
 import '../cubits/login_cubit.dart';
 import '../cubits/login_state.dart';
@@ -54,7 +53,7 @@ class LoginButtonBlocListener extends StatelessWidget {
   }
 
   Future<void> _onLoginSuccess(LoginState state, BuildContext context) async {
-    await SecureStorageHelper.setSecuredString(CacheKeys.userId, state.userId!);
+    await UserModel.secureUser(state.user!);
     context.popTop();
     await Future.delayed(Duration(milliseconds: 675));
     context.pushReplacementNamed(Routes.home);

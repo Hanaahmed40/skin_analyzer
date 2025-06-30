@@ -1,3 +1,5 @@
+import '../../../../models/user_model.dart';
+
 enum LoginStateStatus {
   initial,
   loading,
@@ -8,14 +10,14 @@ enum LoginStateStatus {
 
 class LoginState {
   final LoginStateStatus status;
-  final String? userId;
+  final UserModel? user;
   final String? errorMessage;
   final bool isPasswordObscure;
 
   const LoginState({
     required this.status,
     this.errorMessage,
-    this.userId,
+    this.user,
     this.isPasswordObscure = true,
   });
 
@@ -26,13 +28,13 @@ class LoginState {
   LoginState copyWith({
     LoginStateStatus? status,
     String? errorMessage,
-    String? userId,
+    UserModel? user,
     bool? isPasswordObscure,
   }) {
     return LoginState(
       status: status ?? this.status,
       errorMessage: errorMessage ?? this.errorMessage,
-      userId: userId ?? this.userId,
+      user: user ?? this.user,
       isPasswordObscure: isPasswordObscure ?? this.isPasswordObscure,
     );
   }

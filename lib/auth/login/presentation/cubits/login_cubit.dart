@@ -26,7 +26,7 @@ class LoginCubit extends Cubit<LoginState> {
       case SupabaseRequestSuccess(:final data):
         emit(state.copyWith(
           status: LoginStateStatus.success,
-          userId: data,
+          user: data,
         ));
 
       case SupabaseRequestFailure(:final errorModel):
