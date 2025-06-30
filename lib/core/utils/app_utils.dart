@@ -1,7 +1,7 @@
 import '../../models/user_model.dart';
 
 String? currentUserId;
-UserModel? userModel;
+UserModel? currentUser;
 bool isUserLoggedIn = false;
 
 class AppUtils {
