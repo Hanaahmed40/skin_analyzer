@@ -1,3 +1,5 @@
+import '../models/user_model.dart';
+
 enum RegisterStateStatus {
   initial,
   loading,
@@ -9,13 +11,14 @@ enum RegisterStateStatus {
 
 class RegisterState {
   final RegisterStateStatus status;
-  final String? errorMessage, userId;
+  final String? errorMessage;
+  final UserModel? user;
   final bool isPasswordObscure, isConfirmPassObscure;
 
   RegisterState({
     required this.status,
     this.errorMessage,
-    this.userId,
+    this.user,
     this.isPasswordObscure = true,
     this.isConfirmPassObscure = true,
   });
@@ -26,14 +29,14 @@ class RegisterState {
   RegisterState copyWith({
     RegisterStateStatus? status,
     String? errorMessage,
-    String? userId,
+    UserModel? user,
     bool? isPasswordObscure,
     bool? isConfirmPassObscure,
   }) {
     return RegisterState(
       status: status ?? this.status,
       errorMessage: errorMessage ?? this.errorMessage,
-      userId: userId ?? this.userId,
+      user: user ?? this.user,
       isPasswordObscure: isPasswordObscure ?? this.isPasswordObscure,
       isConfirmPassObscure: isConfirmPassObscure ?? this.isConfirmPassObscure,
     );

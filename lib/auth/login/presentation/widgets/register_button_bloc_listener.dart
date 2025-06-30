@@ -5,9 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/helpers/cache_keys.dart';
 import '../../../../core/helpers/secure_storage_helper.dart';
 import '../../../../core/router/routes.dart';
+import '../../../../core/utils/app_utils.dart';
 import '../../../../cubits/register_cubit.dart';
 import '../../../../cubits/register_state.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../models/user_model.dart';
 import '../../../../utils/app_colors.dart';
 
 class RegisterButtonBlocListener extends StatelessWidget {
@@ -49,8 +51,11 @@ class RegisterButtonBlocListener extends StatelessWidget {
   }
 
   Future<void> _onRegisterSuccess(
-      RegisterState state, BuildContext context) async {
-    await SecureStorageHelper.setSecuredString(CacheKeys.userId, state.userId!);
+    RegisterState state,
+    BuildContext context,
+  ) async {
+    currentUser = state.user!;
+    await UserModel.secureUser(state.user!);
     context.popTop();
     await Future.delayed(Duration(milliseconds: 675));
     context.pushReplacementNamed(Routes.home);

@@ -11,6 +11,7 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   RegisterCubit(this._registerRepo) : super(RegisterState.initial());
 
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPassController = TextEditingController();
@@ -20,14 +21,16 @@ class RegisterCubit extends Cubit<RegisterState> {
     final result = await _registerRepo.auth(AuthParams(
       email: emailController.text.trim(),
       password: passwordController.text,
+      name: nameController.text.trim(),
     ));
     switch (result) {
       case SupabaseRequestSuccess(:final data):
-        emit(state.copyWith(status: RegisterStateStatus.success, userId: data));
+        emit(state.copyWith(status: RegisterStateStatus.success, user: data));
       case SupabaseRequestFailure(:final errorModel):
         emit(state.copyWith(
-            status: RegisterStateStatus.failure,
-            errorMessage: errorModel.message));
+          status: RegisterStateStatus.failure,
+          errorMessage: errorModel.message,
+        ));
       default:
         break;
     }
@@ -49,6 +52,7 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   @override
   Future<void> close() {
+    nameController.dispose();
     emailController.dispose();
     passwordController.dispose();
     confirmPassController.dispose();

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/router/routes.dart';
+import '../../../../core/utils/app_utils.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../models/user_model.dart';
 import '../../../../utils/app_colors.dart';
@@ -53,6 +54,7 @@ class LoginButtonBlocListener extends StatelessWidget {
   }
 
   Future<void> _onLoginSuccess(LoginState state, BuildContext context) async {
+    currentUser = state.user!;
     await UserModel.secureUser(state.user!);
     context.popTop();
     await Future.delayed(Duration(milliseconds: 675));
