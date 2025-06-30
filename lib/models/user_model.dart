@@ -4,7 +4,7 @@ import '../core/helpers/cache_keys.dart';
 import '../core/helpers/secure_storage_helper.dart';
 
 class UserModel {
-  final String? name, email, userId, createdAt, avatarUrl;
+  final String? name, email, userId, createdAt, avatarUrl, password;
 
   UserModel({
     this.name,
@@ -12,6 +12,7 @@ class UserModel {
     this.userId,
     this.createdAt,
     this.avatarUrl,
+    this.password,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
@@ -20,6 +21,7 @@ class UserModel {
         userId: json['userId'],
         createdAt: json['created_at'],
         avatarUrl: json['avatar_url'],
+        password: json['password'],
       );
 
   Map<String, dynamic> toJson() => {
@@ -27,7 +29,8 @@ class UserModel {
         'email': email,
         'userId': userId,
         'created_at': createdAt,
-        'avatar_url': avatarUrl
+        'avatar_url': avatarUrl,
+        'password': password,
       };
 
   UserModel copyWith({
@@ -36,6 +39,7 @@ class UserModel {
     String? userId,
     String? createdAt,
     String? avatarUrl,
+    String? password,
   }) =>
       UserModel(
         email: email ?? this.email,
@@ -43,6 +47,7 @@ class UserModel {
         userId: userId ?? this.userId,
         createdAt: createdAt ?? this.createdAt,
         avatarUrl: avatarUrl ?? this.avatarUrl,
+        password: password ?? this.password,
       );
 
   static Future<void> secureUser(UserModel user) async {

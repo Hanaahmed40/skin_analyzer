@@ -21,6 +21,7 @@ class ProfileRemoteDataSource {
     return currentUser!.copyWith(
       email: params.email ?? currentUser!.email,
       name: params.name ?? currentUser!.name,
+      password: params.password ?? currentUser!.password,
     );
   }
 
@@ -28,6 +29,7 @@ class ProfileRemoteDataSource {
     await _supabaseClient.auth.updateUser(
       UserAttributes(
         email: params.email ?? currentUser!.email,
+        password: params.password ?? currentUser!.password,
         data: {'name': params.name ?? currentUser!.name},
       ),
     );

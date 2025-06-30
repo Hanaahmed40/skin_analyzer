@@ -1,8 +1,11 @@
 import 'package:event_planning/cubits/diagnosis_cubit.dart';
+import 'package:event_planning/cubits/profile_cubit.dart';
 import 'package:event_planning/cubits/register_cubit.dart';
 import 'package:event_planning/data_source/main_remote_data_source.dart';
 import 'package:event_planning/cubits/main_cubit.dart';
+import 'package:event_planning/data_source/profile_remote_data_source.dart';
 import 'package:event_planning/repositories/main_repo.dart';
+import 'package:event_planning/repositories/profile_repo.dart';
 import 'package:get_it/get_it.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
@@ -34,6 +37,8 @@ void setupDI() {
       () => RegisterRemoteDataSource(getIt.get<SupabaseClient>()));
   getIt.registerLazySingleton<MainRemoteDataSource>(
       () => MainRemoteDataSource(getIt.get<SupabaseClient>()));
+  getIt.registerLazySingleton<ProfileRemoteDataSource>(
+      () => ProfileRemoteDataSource(getIt.get<SupabaseClient>()));
 
   // Registering Repositories
   getIt.registerLazySingleton<LoginRepo>(
@@ -42,6 +47,8 @@ void setupDI() {
       () => RegisterRepo(getIt.get<RegisterRemoteDataSource>()));
   getIt.registerLazySingleton<MainRepo>(
       () => MainRepo(getIt.get<MainRemoteDataSource>()));
+  getIt.registerLazySingleton<ProfileRepo>(
+      () => ProfileRepo(getIt.get<ProfileRemoteDataSource>()));
 
   // Registering Cubits
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt.get<LoginRepo>()));
@@ -50,4 +57,6 @@ void setupDI() {
   getIt.registerFactory<MainCubit>(() => MainCubit(getIt.get<MainRepo>()));
   getIt.registerFactory<DiagnosisCubit>(
       () => DiagnosisCubit(getIt.get<MainRepo>()));
+  getIt.registerFactory<ProfileCubit>(
+      () => ProfileCubit(getIt.get<ProfileRepo>()));
 }

@@ -17,7 +17,7 @@ class LoginRemoteDataSource implements AuthRemoteDataSource {
   Future<UserModel> auth(AuthParams params) async {
     final authResponse = await _supabaseClient.auth.signInWithPassword(
       email: params.email,
-      password: params.password,
+      password: params.password!,
     );
     final userJson = await _supabaseClient
         .from(AppUtils.profilesTable)
@@ -37,7 +37,7 @@ class RegisterRemoteDataSource implements AuthRemoteDataSource {
   Future<UserModel> auth(AuthParams params) async {
     final authResponse = await _supabaseClient.auth.signUp(
       email: params.email,
-      password: params.password,
+      password: params.password!,
       data: {'name': params.name},
     );
     final supabaseUser = authResponse.user;
