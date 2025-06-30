@@ -1,3 +1,8 @@
+import 'dart:convert' show json;
+
+import '../core/helpers/cache_keys.dart';
+import '../core/helpers/secure_storage_helper.dart';
+
 class UserModel {
   final String? name, email, userId, createdAt, avatarUrl;
 
@@ -24,4 +29,21 @@ class UserModel {
         'created_at': createdAt,
         'avatar_url': avatarUrl
       };
+
+  static Future<void> secureUser(UserModel user) async {
+    await SecureStorageHelper.setSecuredString(
+      CacheKeys.user,
+      json.encode(user.toJson()),
+    );
+  }
+
+  static Future<UserModel> getSecuredUser() async {
+    final userString =
+        await SecureStorageHelper.getSecuredString(CacheKeys.user);
+    return UserModel.fromJson(json.decode(userString));
+  }
+
+  static Future<void> deleteSecuredUser() async {
+    await SecureStorageHelper.removeSecuredData(CacheKeys.user);
+  }
 }
