@@ -1,4 +1,3 @@
-import 'package:event_planning/core/utils/functions/check_if_user_is_logged_in.dart';
 import 'package:event_planning/di.dart';
 import 'package:event_planning/l10n/app_localizations.dart';
 import 'package:event_planning/providers/app_language_provider.dart';

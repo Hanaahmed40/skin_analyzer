@@ -19,7 +19,7 @@ class DiagnosisCubit extends Cubit<DiagnosisState> {
 
     switch (result) {
       case SupabaseRequestSuccess<PredictResponse>():
-        final data = (result as SupabaseRequestSuccess<PredictResponse>).data;
+        final data = (result).data;
         emit(state.copyWith(
           status: DiagnosisStateStatus.predictSuccess,
           prediction: data,
