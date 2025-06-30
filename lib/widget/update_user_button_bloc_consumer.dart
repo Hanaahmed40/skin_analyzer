@@ -1,6 +1,8 @@
 import 'package:event_planning/core/helpers/extensions.dart';
+import 'package:event_planning/core/utils/app_utils.dart';
 import 'package:event_planning/cubits/profile_cubit.dart';
 import 'package:event_planning/cubits/profile_state.dart';
+import 'package:event_planning/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -39,7 +41,7 @@ class UpdateUserButtonBlocConsumer extends StatelessWidget {
         state.status == ProfileStatus.updateImgFailure;
   }
 
-  void _listener(ProfileState state, BuildContext context) {
+  void _listener(ProfileState state, BuildContext context) async {
     switch (state.status) {
       case ProfileStatus.updateUserLoading:
       case ProfileStatus.updateImgLoading:
@@ -49,9 +51,13 @@ class UpdateUserButtonBlocConsumer extends StatelessWidget {
         context.popTop();
         context.showAppDialog(content: state.errorMessage!);
       case ProfileStatus.updateUserSuccess:
+        currentUser = state.user;
+        await UserModel.secureUser(state.user!);
         context.popTop();
         context.showAppDialog(content: 'User updated successfully');
       case ProfileStatus.updateImgSuccess:
+        currentUser = currentUser!.copyWith(avatarUrl: state.avatarUrl);
+        await UserModel.secureUser(state.user!);
         context.popTop();
         context.showAppDialog(content: 'Profile image updated successfully');
       default:
