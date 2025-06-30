@@ -51,6 +51,15 @@ class RegisterScreen extends StatelessWidget {
                 height: height * 0.02,
               ),
               CustomTextField(
+                controller: context.read<RegisterCubit>().nameController,
+                hintText: AppLocalizations.of(context)!.name,
+                prefix: Icon(Icons.person),
+                obscureText: false,
+              ),
+              SizedBox(
+                height: height * 0.02,
+              ),
+              CustomTextField(
                 controller: context.read<RegisterCubit>().emailController,
                 hintText: AppLocalizations.of(context)!.email,
                 prefix: Icon(Icons.email_sharp),
