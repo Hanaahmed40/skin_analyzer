@@ -1,6 +1,7 @@
 import 'package:event_planning/core/utils/functions/execute_and_handle_errors.dart';
 
 import 'package:event_planning/core/supabase/supabase_request_result.dart';
+import '../../../../models/user_model.dart';
 import '../data_source/auth_remote_data_source.dart';
 import '../../../../models/auth_params.dart';
 
@@ -9,7 +10,7 @@ abstract class AuthRepo {
 
   AuthRepo(this.remoteDataSource);
 
-  Future<SupabaseRequestResult<String?>> auth(AuthParams params);
+  Future<SupabaseRequestResult<UserModel>> auth(AuthParams params);
 }
 
 class LoginRepo extends AuthRepo {
@@ -18,11 +19,10 @@ class LoginRepo extends AuthRepo {
   LoginRepo(this._remoteDataSource) : super(_remoteDataSource);
 
   @override
-  Future<SupabaseRequestResult<String?>> auth(AuthParams params) {
-    return executeAndHandleErrors<String?>(() async {
-      final authResponse = await _remoteDataSource.auth(params);
-      return authResponse.user!.id;
-    });
+  Future<SupabaseRequestResult<UserModel>> auth(AuthParams params) {
+    return executeAndHandleErrors<UserModel>(
+      () async => await _remoteDataSource.auth(params),
+    );
   }
 }
 
@@ -32,10 +32,9 @@ class RegisterRepo extends AuthRepo {
   RegisterRepo(this._remoteDataSource) : super(_remoteDataSource);
 
   @override
-  Future<SupabaseRequestResult<String?>> auth(AuthParams params) {
-    return executeAndHandleErrors<String?>(() async {
-      final authResponse = await _remoteDataSource.auth(params);
-      return authResponse.user!.id;
-    });
+  Future<SupabaseRequestResult<UserModel>> auth(AuthParams params) {
+    return executeAndHandleErrors<UserModel>(
+      () async => await _remoteDataSource.auth(params),
+    );
   }
 }
