@@ -99,3 +99,10 @@ class _LoadingWidget extends StatelessWidget {
     );
   }
 }
+
+extension FirstLetterCapitalization on String {
+  String capitalizeFirst() {
+    if (isEmpty) return this;
+    return this[0].toUpperCase();
+  }
+}
