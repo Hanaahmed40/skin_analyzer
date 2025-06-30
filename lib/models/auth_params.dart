@@ -1,10 +1,15 @@
 class AuthParams {
-  final String email, password;
+  final String? email, password;
   final String? name;
 
   AuthParams({
-    required this.email,
-    required this.password,
+    this.email,
+    this.password,
     this.name,
   });
+
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'email': email,
+      };
 }

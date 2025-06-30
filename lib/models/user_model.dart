@@ -30,6 +30,21 @@ class UserModel {
         'avatar_url': avatarUrl
       };
 
+  UserModel copyWith({
+    String? email,
+    String? name,
+    String? userId,
+    String? createdAt,
+    String? avatarUrl,
+  }) =>
+      UserModel(
+        email: email ?? this.email,
+        name: name ?? this.name,
+        userId: userId ?? this.userId,
+        createdAt: createdAt ?? this.createdAt,
+        avatarUrl: avatarUrl ?? this.avatarUrl,
+      );
+
   static Future<void> secureUser(UserModel user) async {
     await SecureStorageHelper.setSecuredString(
       CacheKeys.user,

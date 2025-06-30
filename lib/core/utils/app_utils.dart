@@ -11,4 +11,5 @@ class AppUtils {
   static const String remoteTableIdColumnName = 'id';
   static const String remoteTableName = 'data';
   static const String profilesTable = 'profiles';
+  static const String imagesStorage = 'images';
 }

@@ -4,6 +4,7 @@ import 'package:event_planning/providers/app_language_provider.dart';
 import 'package:event_planning/providers/app_theme_provider.dart';
 import 'package:event_planning/ui/home_screen/pages/analysisPage.dart';
 import 'package:event_planning/ui/home_screen/pages/diagnosisPage.dart';
+import 'package:event_planning/ui/home_screen/pages/profile_screen.dart';
 import 'package:event_planning/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _pages = [
     AnalysisPage(),
-    HistoryPage(history: diagnosisHistory)
+    HistoryPage(history: diagnosisHistory),
+    ProfileScreen(),
   ];
 
   void onTabTapped(int index) {
@@ -60,6 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
         notchMargin: 10,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
+          spacing: 40,
           children: [
             IconButton(
               icon: Icon(
@@ -67,13 +70,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: AppColors.whiteColor,
                 size: 35,
               ),
-              onPressed: () => onTabTapped(1),
+              onPressed: () => onTabTapped(0),
             ),
-
-            SizedBox(width: 40), // Space for FAB
             IconButton(
               icon: Icon(
                 Icons.article_sharp,
+                color: AppColors.whiteColor,
+                size: 35,
+              ),
+              onPressed: () => onTabTapped(1),
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.person_3,
                 color: AppColors.whiteColor,
                 size: 35,
               ),
