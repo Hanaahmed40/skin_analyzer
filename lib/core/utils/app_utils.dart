@@ -1,4 +1,7 @@
+import '../../models/user_model.dart';
+
 String? currentUserId;
+UserModel? userModel;
 bool isUserLoggedIn = false;
 
 class AppUtils {
@@ -7,4 +10,5 @@ class AppUtils {
   static const int remoteTableId = 2025;
   static const String remoteTableIdColumnName = 'id';
   static const String remoteTableName = 'data';
+  static const String profilesTable = 'profiles';
 }

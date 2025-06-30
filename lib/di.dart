@@ -29,9 +29,9 @@ void setupDI() {
 
   // Registering Data Sources
   getIt.registerLazySingleton<LoginRemoteDataSource>(
-      () => LoginRemoteDataSource(getIt.get<GoTrueClient>()));
+      () => LoginRemoteDataSource(getIt.get<SupabaseClient>()));
   getIt.registerLazySingleton<RegisterRemoteDataSource>(
-      () => RegisterRemoteDataSource(getIt.get<GoTrueClient>()));
+      () => RegisterRemoteDataSource(getIt.get<SupabaseClient>()));
   getIt.registerLazySingleton<MainRemoteDataSource>(
       () => MainRemoteDataSource(getIt.get<SupabaseClient>()));
 

@@ -1,35 +1,52 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../../../core/utils/app_utils.dart';
 import '../../../../models/auth_params.dart';
+import '../../../../models/user_model.dart';
 
 abstract class AuthRemoteDataSource {
-  Future<AuthResponse> auth(AuthParams params);
+  Future<UserModel> auth(AuthParams params);
 }
 
 class LoginRemoteDataSource implements AuthRemoteDataSource {
-  final GoTrueClient _supabaseAuth;
+  final SupabaseClient _supabaseClient;
 
-  LoginRemoteDataSource(this._supabaseAuth);
+  LoginRemoteDataSource(this._supabaseClient);
 
   @override
-  Future<AuthResponse> auth(AuthParams params) {
-    return _supabaseAuth.signInWithPassword(
+  Future<UserModel> auth(AuthParams params) async {
+    final authResponse = await _supabaseClient.auth.signInWithPassword(
       email: params.email,
       password: params.password,
     );
+    final userJson = await _supabaseClient
+        .from(AppUtils.profilesTable)
+        .select()
+        .eq('userId', authResponse.user!.id)
+        .single();
+    return UserModel.fromJson(userJson);
   }
 }
 
 class RegisterRemoteDataSource implements AuthRemoteDataSource {
-  final GoTrueClient _supabaseAuth;
+  final SupabaseClient _supabaseClient;
 
-  RegisterRemoteDataSource(this._supabaseAuth);
+  RegisterRemoteDataSource(this._supabaseClient);
 
   @override
-  Future<AuthResponse> auth(AuthParams params) {
-    return _supabaseAuth.signUp(
+  Future<UserModel> auth(AuthParams params) async {
+    final authResponse = await _supabaseClient.auth.signUp(
       email: params.email,
       password: params.password,
+      data: {'name': params.name},
     );
+    final supabaseUser = authResponse.user;
+    final user = UserModel(
+        name: params.name,
+        email: params.email,
+        createdAt: supabaseUser!.createdAt,
+        avatarUrl: supabaseUser.userMetadata!['avatar_url']);
+    await _supabaseClient.from(AppUtils.profilesTable).insert(user.toJson());
+    return user;
   }
 }
