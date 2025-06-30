@@ -4,7 +4,7 @@ import 'package:event_planning/models/auth_params.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../auth/login/data/repository/auth_repo.dart';
+import 'package:event_planning/auth/login/data/repository/auth_repo.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   final RegisterRepo _registerRepo;

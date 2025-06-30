@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'diagnosis_record.dart';
-import 'dart:io';
-import 'package:intl/intl.dart';
 import 'package:intl/intl.dart';
 
 import '../../../utils/app_colors.dart';
-import 'diagnosis_record.dart';
 
 class HistoryPage extends StatelessWidget {
   final List<DiagnosisRecord> history;

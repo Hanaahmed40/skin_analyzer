@@ -99,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: height * 0.02,
               ),
-              Row(
+             /* Row(
                 children: [
                   Expanded(
                     child: Divider(
@@ -109,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       indent: 10,
                     ),
                   ),
-                  Text(
+                 Text(
                     AppLocalizations.of(context)!.or,
                     style: TextStyle(
                       color: AppColors.primaryLight,
@@ -128,8 +128,8 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(
                 height: height * 0.02,
-              ),
-              GestureDetector(
+              ),*/
+            /*  GestureDetector(
                 onTap: () {},
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 10),
@@ -153,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                 ),
-              )
+              )*/
             ],
           ),
         ),

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:event_planning/cubits/main_cubit.dart';
+import 'package:event_planning/cubits/main_state.dart';
 
-import '../../../cubits/main_cubit.dart';
-import '../../../cubits/main_state.dart';
 import '../../../widget/image_picker_bloc_listener.dart';
 
 class AnalysisPage extends StatelessWidget {

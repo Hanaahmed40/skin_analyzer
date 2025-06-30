@@ -1,7 +1,6 @@
 import 'package:event_planning/core/helpers/extensions.dart';
 import 'package:event_planning/cubits/register_cubit.dart';
 import 'package:event_planning/l10n/app_localizations.dart';
-import 'package:event_planning/ui/home_screen/home_screen.dart';
 import 'package:event_planning/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:event_planning/widget/custom_text_field.dart';
