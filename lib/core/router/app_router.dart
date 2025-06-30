@@ -2,6 +2,7 @@ import 'package:event_planning/auth/login/presentation/cubits/login_cubit.dart';
 import 'package:event_planning/cubits/diagnosis_cubit.dart';
 import 'package:event_planning/cubits/register_cubit.dart';
 import 'package:event_planning/di.dart';
+import 'package:event_planning/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,7 +21,9 @@ class AppRouter {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/': // initial route
-        return isUserLoggedIn ? _homeRoute() : _loginRoute();
+        return isOnboardingVisited == false
+            ? _onboardingRoute()
+            : (isUserLoggedIn ? _homeRoute() : _loginRoute());
 
       case Routes.login:
         return _loginRoute();
@@ -52,6 +55,10 @@ class AppRouter {
       default:
         return _unFoundRoute();
     }
+  }
+
+  static MaterialPageRoute<dynamic> _onboardingRoute() {
+    return MaterialPageRoute(builder: (_) => OnBoardingScreen());
   }
 
   static MaterialPageRoute<dynamic> _homeRoute() {

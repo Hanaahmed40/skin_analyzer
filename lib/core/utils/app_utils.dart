@@ -3,6 +3,7 @@ import '../../models/user_model.dart';
 String? currentUserId;
 UserModel? currentUser;
 bool isUserLoggedIn = false;
+bool isOnboardingVisited = false;
 
 class AppUtils {
   AppUtils._();

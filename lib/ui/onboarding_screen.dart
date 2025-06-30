@@ -1,6 +1,9 @@
+import 'package:event_planning/core/helpers/cache_helper.dart';
+import 'package:event_planning/core/helpers/cache_keys.dart';
+import 'package:event_planning/core/helpers/extensions.dart';
+import 'package:event_planning/core/router/routes.dart';
 import 'package:event_planning/ui/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
-
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -18,7 +21,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
         3,
-            (i) => Container(
+        (i) => Container(
           margin: EdgeInsets.symmetric(horizontal: 5),
           width: i == pagenum ? 25 : 6,
           height: 6,
@@ -29,6 +32,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         ),
       ),
     );
+  }
+
+  void _goLogin() async {
+    await CacheHelper.setData(CacheKeys.onboarding, true);
+    context.pushReplacementNamed(Routes.login);
   }
 
   @override
@@ -108,7 +116,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 child: Text(
                   "Your skin deserves the best care! With Skin Analyser.AI, you can scan your skin in seconds and let our AI detect potential skin conditions. Get instant insights, expert-backed recommendations, and personalized skincare tips.",
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 15),),
+                  style: TextStyle(fontSize: 15),
+                ),
               ),
               Spacer(),
               ElevatedButton(
@@ -165,10 +174,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   ),
                   fixedSize: Size(200, 56),
                 ),
-                onPressed: () {
-                  Navigator.pushReplacementNamed(
-                      context, HomeScreen.routeName);
-                },
+                onPressed: () => _goLogin(),
                 child: Text("Let's Start", style: TextStyle(fontSize: 20)),
               ),
               SizedBox(height: 30),
