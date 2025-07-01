@@ -4,13 +4,12 @@ import '../core/helpers/cache_keys.dart';
 import '../core/helpers/secure_storage_helper.dart';
 
 class UserModel {
-  final String? name, email, userId, createdAt, avatarUrl, password;
+  final String? name, email, userId, avatarUrl, password;
 
   UserModel({
     this.name,
     this.email,
     this.userId,
-    this.createdAt,
     this.avatarUrl,
     this.password,
   });
@@ -19,7 +18,6 @@ class UserModel {
         name: json['name'],
         email: json['email'],
         userId: json['userId'],
-        createdAt: json['created_at'],
         avatarUrl: json['avatar_url'],
         password: json['password'],
       );
@@ -28,7 +26,6 @@ class UserModel {
         'name': name,
         'email': email,
         'userId': userId,
-        'created_at': createdAt,
         'avatar_url': avatarUrl,
         'password': password,
       };
@@ -37,7 +34,6 @@ class UserModel {
     String? email,
     String? name,
     String? userId,
-    String? createdAt,
     String? avatarUrl,
     String? password,
   }) =>
@@ -45,7 +41,6 @@ class UserModel {
         email: email ?? this.email,
         name: name ?? this.name,
         userId: userId ?? this.userId,
-        createdAt: createdAt ?? this.createdAt,
         avatarUrl: avatarUrl ?? this.avatarUrl,
         password: password ?? this.password,
       );

@@ -42,9 +42,10 @@ class RegisterRemoteDataSource implements AuthRemoteDataSource {
     );
     final supabaseUser = authResponse.user;
     final user = UserModel(
+        userId: supabaseUser!.id,
         name: params.name,
         email: params.email,
-        createdAt: supabaseUser!.createdAt,
+        password: params.password,
         avatarUrl: supabaseUser.userMetadata!['avatar_url']);
     await _supabaseClient.from(AppUtils.profilesTable).insert(user.toJson());
     return user;

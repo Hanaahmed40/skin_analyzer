@@ -28,18 +28,20 @@ class ProfileScreen extends StatelessWidget {
             ),
             actions: const [LogoutBlocListener()],
           ),
-          SliverFillRemaining(
-            hasScrollBody: false,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              spacing: 24,
-              children: const [
-                ProfileImgBlocSelector(),
-                ProfileTextFields(),
-                SizedBox(height: 16),
-                UpdateUserButtonBlocConsumer(),
-              ],
+          SliverPadding(
+            padding: const EdgeInsets.all(24.0),
+            sliver: SliverFillRemaining(
+              hasScrollBody: false,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                spacing: 24,
+                children: const [
+                  ProfileImgBlocSelector(),
+                  ProfileTextFields(),
+                  UpdateUserButtonBlocConsumer(),
+                ],
+              ),
             ),
           ),
         ],

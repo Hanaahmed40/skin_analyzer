@@ -14,17 +14,21 @@ class ProfileImg extends StatelessWidget {
         ? CustomCachedNetworkImg(
             imageUrl: avatarUrl,
             imageBuilder: (_, img) => CircleAvatar(
-              radius: 120,
+              radius: 50,
               backgroundColor: Colors.blue,
               backgroundImage: img,
             ),
           )
         : CircleAvatar(
-            radius: 120,
+            radius: 50,
             backgroundColor: Colors.blue,
             child: Text(
               currentUser?.email?.capitalizeFirst() ?? 'A',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+              ),
             ),
           );
   }

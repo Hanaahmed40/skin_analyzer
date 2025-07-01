@@ -85,7 +85,7 @@ class ProfileRemoteDataSource {
     return _supabaseClient
         .from(AppUtils.profilesTable)
         .update(userJson)
-        .eq('user_id', currentUser!.userId!);
+        .eq('userId', currentUser!.userId!);
   }
 
   Future<String> _getAvatarSignedUrl(String imgPath) {
