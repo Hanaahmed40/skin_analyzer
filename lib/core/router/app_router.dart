@@ -47,8 +47,10 @@ class AppRouter {
       case Routes.diagnosis:
         return MaterialPageRoute(
             builder: (_) => BlocProvider<DiagnosisCubit>(
-                  create: (context) =>
-                      getIt.get<DiagnosisCubit>()..fetchRandomPrediction(),
+                  create: (context) {
+                    return getIt.get<DiagnosisCubit>()..fetchRandomPrediction();
+                    // return getIt.get<DiagnosisCubit>()..predict();
+                  },
                   child: DiagnosisPage(),
                 ));
 
