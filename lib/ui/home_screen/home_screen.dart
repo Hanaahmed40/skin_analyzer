@@ -1,7 +1,7 @@
 import 'package:event_planning/core/helpers/extensions.dart';
 import 'package:event_planning/cubits/main_cubit.dart';
-import 'package:event_planning/providers/app_language_provider.dart';
-import 'package:event_planning/providers/app_theme_provider.dart';
+//import 'package:event_planning/providers/app_language_provider.dart';
+//import 'package:event_planning/providers/app_theme_provider.dart';
 import 'package:event_planning/ui/home_screen/pages/analysisPage.dart';
 import 'package:event_planning/ui/home_screen/pages/diagnosisPage.dart';
 import 'package:event_planning/ui/home_screen/pages/profile_screen.dart';
@@ -38,9 +38,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var languageProvider = Provider.of<AppLanguageProvider>(context);
-    var themeProvider = Provider.of<AppThemeProvider>(context);
+   // var height = MediaQuery.of(context).size.height;
+    //var languageProvider = Provider.of<AppLanguageProvider>(context);
+    //var themeProvider = Provider.of<AppThemeProvider>(context);
     return Scaffold(
       body: _pages[_selectedIndex],
       floatingActionButton: FloatingActionButton(

@@ -14,14 +14,14 @@ class ProfileRemoteDataSource {
   ProfileRemoteDataSource(this._supabaseClient);
 
   Future<UserModel> updateUser(AuthParams params) async {
-    await Future.wait([
-      _updateSupabaseAuthUser(params),
-      _updateUserDataInDatabase(params),
-    ]);
+    //await Future.wait([
+     await _updateSupabaseAuthUser(params);
+     await _updateUserDataInDatabase(params);
+   // ]);
     return currentUser!.copyWith(
       email: params.email ?? currentUser!.email,
       name: params.name ?? currentUser!.name,
-      password: params.password ?? currentUser!.password,
+     // password: params.password ?? currentUser!.password,
     );
   }
 
@@ -106,6 +106,26 @@ class ProfileRemoteDataSource {
         _supabaseClient.auth.currentUser?.userMetadata ?? {};
     await _supabaseClient.auth.updateUser(
       UserAttributes(data: {...currentMetadata, 'avatar_url': imgUrl}),
+    );
+  }
+  Future<UserModel> updatePassword(AuthParams params) async {
+   // await Future.wait([
+   await  _updateSupabaseAuthUserForPassword(params);
+   await   _updateUserDataInDatabase(params);
+  //  ]);
+    return currentUser!.copyWith(
+      email: params.email ?? currentUser!.email,
+      name: params.name ?? currentUser!.name,
+      password: params.password ?? currentUser!.password,
+    );
+  }
+   Future<void> _updateSupabaseAuthUserForPassword(AuthParams params) async {
+    await _supabaseClient.auth.updateUser(
+      UserAttributes(
+        email: params.email ?? currentUser!.email,
+        password: params.password ?? currentUser!.password,
+        data: {'name': params.name ?? currentUser!.name},
+      ),
     );
   }
 }

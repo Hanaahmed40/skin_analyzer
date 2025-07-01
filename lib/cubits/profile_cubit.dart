@@ -1,4 +1,4 @@
-import 'dart:io' show File;
+//import 'dart:io' show File;
 
 import 'package:event_planning/core/supabase/supabase_request_result.dart';
 import 'package:event_planning/core/utils/app_utils.dart';
@@ -28,7 +28,7 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   void updatePassword() async {
     emit(state.copyWith(status: ProfileStatus.updatePassLoading));
-    final result = await _profileRepo.updateProfile(AuthParams(
+    final result = await _profileRepo.updatePassword(AuthParams(
       password: passwordController.text.trim(),
     ));
     switch (result) {
@@ -44,8 +44,8 @@ class ProfileCubit extends Cubit<ProfileState> {
           errorMessage: errorModel.message,
         ));
         break;
-      default:
-        break;
+   //   default:
+     //   break;
     }
   }
 
@@ -68,8 +68,8 @@ class ProfileCubit extends Cubit<ProfileState> {
           errorMessage: errorModel.message,
         ));
         break;
-      default:
-        break;
+    //  default:
+      //  break;
     }
   }
 
@@ -101,8 +101,8 @@ class ProfileCubit extends Cubit<ProfileState> {
           errorMessage: errorModel.message,
         ));
         break;
-      default:
-        break;
+    //  default:
+      //  break;
     }
   }
 
@@ -119,8 +119,8 @@ class ProfileCubit extends Cubit<ProfileState> {
           errorMessage: errorModel.message,
         ));
         break;
-      default:
-        break;
+  //    default:
+    //    break;
     }
   }
 

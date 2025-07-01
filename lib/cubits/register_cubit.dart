@@ -31,8 +31,8 @@ class RegisterCubit extends Cubit<RegisterState> {
           status: RegisterStateStatus.failure,
           errorMessage: errorModel.message,
         ));
-      default:
-        break;
+   //   default:
+     //   break;
     }
   }
 

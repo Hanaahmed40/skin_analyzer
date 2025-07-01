@@ -60,8 +60,8 @@ class DiagnosisCubit extends Cubit<DiagnosisState> {
         ));
         break;
 
-      default:
-        break;
+    //  default:
+      //  break;
     }
   }
 }

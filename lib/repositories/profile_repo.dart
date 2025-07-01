@@ -17,6 +17,14 @@ class ProfileRepo {
     return executeAndHandleErrors<UserModel>(
       () async => await _remoteDataSource.updateUser(params),
     );
+  } 
+
+  Future<SupabaseRequestResult<UserModel>> updatePassword(
+    AuthParams params,
+  ) {
+    return executeAndHandleErrors<UserModel>(
+      () async => await _remoteDataSource.updatePassword(params),
+    );
   }
 
   Future<SupabaseRequestResult<void>> logOut() {
@@ -30,4 +38,5 @@ class ProfileRepo {
       () async => await _remoteDataSource.updateProfileImg(imgFile),
     );
   }
+  
 }

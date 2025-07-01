@@ -36,8 +36,8 @@ class MainCubit extends Cubit<MainState> {
           status: MainStateStatus.fetchRandomTipFailure,
           errorMessage: errorModel.message,
         ));
-      default:
-        break;
+     // default:
+       // break;
     }
   }
 }
