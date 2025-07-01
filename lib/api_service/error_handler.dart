@@ -23,7 +23,10 @@ class ApiErrorHandler {
           return const ApiErrorModel(error: 'Certificate error occurred.');
       }
     } else {
-      return const ApiErrorModel(error: 'An unexpected error occurred.');
+      return const ApiErrorModel(
+        error:
+            'Oops! Something went wrong. Don\'t worry these things happen, we are working on it.',
+      );
     }
   }
 
@@ -31,13 +34,12 @@ class ApiErrorHandler {
     if (error.response != null &&
         error.response?.statusCode != null &&
         error.response?.statusMessage != null) {
+      return ApiErrorModel.fromJson(error.response!.data);
+    } else {
       return const ApiErrorModel(
         error:
             'Oops! Something went wrong. Don\'t worry these things happen, we are working on it.',
       );
-      // return ApiErrorModel.fromJson(error.response!.data);
-    } else {
-      return const ApiErrorModel(error: 'An unexpected error occurred.');
     }
   }
 }
