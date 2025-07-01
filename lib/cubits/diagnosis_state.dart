@@ -1,7 +1,11 @@
+import 'package:event_planning/api_service/request_response.dart';
 import 'package:event_planning/models/predict_response.dart';
 
 enum DiagnosisStateStatus {
   initial,
+  fakePredictLoading,
+  fakePredictSuccess,
+  fakePredictFailure,
   predictLoading,
   predictSuccess,
   predictFailure,
@@ -9,13 +13,15 @@ enum DiagnosisStateStatus {
 
 class DiagnosisState {
   final DiagnosisStateStatus status;
-  final PredictResponse? prediction;
+  final PredictResponse? fakePrediction;
   final String? errorMessage;
+  final RequestResponse? prediction;
 
   DiagnosisState({
     required this.status,
-    this.prediction,
+    this.fakePrediction,
     this.errorMessage,
+    this.prediction,
   });
 
   factory DiagnosisState.initial() =>
@@ -23,13 +29,15 @@ class DiagnosisState {
 
   DiagnosisState copyWith({
     DiagnosisStateStatus? status,
-    PredictResponse? prediction,
+    PredictResponse? fakePrediction,
+    RequestResponse? prediction,
     String? errorMessage,
   }) {
     return DiagnosisState(
       status: status ?? this.status,
-      prediction: prediction ?? this.prediction,
+      fakePrediction: fakePrediction ?? fakePrediction,
       errorMessage: errorMessage ?? this.errorMessage,
+      prediction: prediction ?? this.prediction,
     );
   }
 }

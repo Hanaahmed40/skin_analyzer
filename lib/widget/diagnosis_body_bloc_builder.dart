@@ -16,11 +16,11 @@ class DiagnosisBodyBlocBuilder extends StatelessWidget {
       buildWhen: (_, current) => _buildWhen(current.status),
       builder: (_, state) {
         switch (state.status) {
-          case DiagnosisStateStatus.predictLoading:
+          case DiagnosisStateStatus.fakePredictLoading:
             return const DiagnosisLoadingWidget();
-          case DiagnosisStateStatus.predictSuccess:
-            return DiagnosisDetailWidget(prediction: state.prediction!);
-          case DiagnosisStateStatus.predictFailure:
+          case DiagnosisStateStatus.fakePredictSuccess:
+            return DiagnosisDetailWidget(prediction: state.fakePrediction!);
+          case DiagnosisStateStatus.fakePredictFailure:
             return DiagnosisErrorWidget(error: state.errorMessage!);
           default:
             return const DiagnosisLoadingWidget();
@@ -30,8 +30,8 @@ class DiagnosisBodyBlocBuilder extends StatelessWidget {
   }
 
   bool _buildWhen(DiagnosisStateStatus status) {
-    return status == DiagnosisStateStatus.predictLoading ||
-        status == DiagnosisStateStatus.predictSuccess ||
-        status == DiagnosisStateStatus.predictFailure;
+    return status == DiagnosisStateStatus.fakePredictLoading ||
+        status == DiagnosisStateStatus.fakePredictSuccess ||
+        status == DiagnosisStateStatus.fakePredictFailure;
   }
 }
