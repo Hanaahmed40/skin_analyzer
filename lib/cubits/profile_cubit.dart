@@ -26,12 +26,34 @@ class ProfileCubit extends Cubit<ProfileState> {
     ));
   }
 
+  void updatePassword() async {
+    emit(state.copyWith(status: ProfileStatus.updatePassLoading));
+    final result = await _profileRepo.updateProfile(AuthParams(
+      password: passwordController.text.trim(),
+    ));
+    switch (result) {
+      case SupabaseRequestSuccess(:final data):
+        emit(state.copyWith(
+          status: ProfileStatus.updatePassSuccess,
+          user: data,
+        ));
+        break;
+      case SupabaseRequestFailure(:final errorModel):
+        emit(state.copyWith(
+          status: ProfileStatus.updatePassFailure,
+          errorMessage: errorModel.message,
+        ));
+        break;
+      default:
+        break;
+    }
+  }
+
   void updateUser() async {
     emit(state.copyWith(status: ProfileStatus.updateUserLoading));
     final result = await _profileRepo.updateProfile(AuthParams(
       name: nameController.text.trim(),
       email: emailController.text.trim(),
-      password: passwordController.text,
     ));
     switch (result) {
       case SupabaseRequestSuccess(:final data):

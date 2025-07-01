@@ -14,6 +14,9 @@ enum ProfileStatus {
   logoutFailure,
   togglePassVisibility,
   pickImg,
+  updatePassLoading,
+  updatePassSuccess,
+  updatePassFailure,
 }
 
 class ProfileState {

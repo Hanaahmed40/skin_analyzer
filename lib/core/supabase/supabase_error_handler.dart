@@ -11,6 +11,11 @@ class SupabaseErrorHandler {
     if (error is AuthException) {
       // note that AuthException is can be handled same as StorageException
       return _handleAuthErrorFromCode(error.code);
+    } else if (error is AuthApiException) {
+      return SupabaseError(
+        message: error.message,
+        code: error.code,
+      );
     } else if (error is String) {
       return SupabaseError(message: error);
     } else {
