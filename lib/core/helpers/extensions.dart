@@ -59,7 +59,7 @@ extension ShowDialog on BuildContext {
         actions: [
           TextButton(
             onPressed: () {
-              popTop();
+              pop();
               onConfirm?.call();
             },
             child: Text(confirmText),
@@ -104,5 +104,20 @@ extension FirstLetterCapitalization on String {
   String capitalizeFirst() {
     if (isEmpty) return this;
     return this[0].toUpperCase();
+  }
+}
+
+extension ShowToast on BuildContext {
+  void showToast(String message) {
+    ScaffoldMessenger.of(this).showSnackBar(
+      SnackBar(
+        content: Text(
+          message,
+          style: TextStyle(color: Colors.white),
+        ),
+        duration: const Duration(seconds: 2),
+        backgroundColor: Colors.indigo,
+      ),
+    );
   }
 }
