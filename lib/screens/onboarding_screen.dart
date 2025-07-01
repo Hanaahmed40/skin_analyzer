@@ -1,3 +1,7 @@
+import 'package:event_planning/core/helpers/cache_helper.dart';
+import 'package:event_planning/core/helpers/cache_keys.dart';
+import 'package:event_planning/core/helpers/extensions.dart';
+import 'package:event_planning/core/router/routes.dart';
 import 'package:flutter/material.dart';
 // import 'Home_Screen.dart';
 
@@ -17,7 +21,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
         3,
-            (i) => AnimatedContainer(
+        (i) => AnimatedContainer(
           duration: const Duration(milliseconds: 300),
           margin: const EdgeInsets.symmetric(horizontal: 5),
           width: i == pagenum ? 25 : 6,
@@ -29,6 +33,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         ),
       ),
     );
+  }
+
+  void _goToLogin() async {
+    await CacheHelper.setData(CacheKeys.onboarding, true);
+    context.pushReplacementNamed(Routes.login);
   }
 
   @override
@@ -47,7 +56,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             image: 'assets/images/image(1).png',
             title: 'Personalize Your Experience',
             desc:
-            'Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style.',
+                'Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style.',
             buttonText: 'Next',
             onPressed: () => nextpage.animateToPage(1,
                 duration: const Duration(milliseconds: 500),
@@ -58,7 +67,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             image: 'assets/images/image(2).png',
             title: 'Scan, Analyze & Take Care of Your Skin with AI',
             desc:
-            'Your skin deserves the best care! With Skin Analyser.AI, you can scan your skin in seconds and let our AI detect potential skin conditions. Get instant insights, expert-backed recommendations, and personalized skincare tips.',
+                'Your skin deserves the best care! With Skin Analyser.AI, you can scan your skin in seconds and let our AI detect potential skin conditions. Get instant insights, expert-backed recommendations, and personalized skincare tips.',
             buttonText: 'Next',
             onPressed: () => nextpage.animateToPage(2,
                 duration: const Duration(milliseconds: 500),
@@ -69,16 +78,18 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             image: 'assets/images/image(3).png',
             title: "Don't Forget to Share Your Journey",
             desc:
-            'Tracking your skin’s progress is important—but sharing it makes it even better! Stay connected with friends, exchange tips, and celebrate your improvements together.',
+                'Tracking your skin’s progress is important—but sharing it makes it even better! Stay connected with friends, exchange tips, and celebrate your improvements together.',
             buttonText: "Let's Start",
             onPressed: () {
-              Navigator.pushReplacementNamed(context, HomeScreen.routName);
+              _goToLogin();
             },
           ),
         ],
       ),
     );
-  }Widget buildPage({
+  }
+
+  Widget buildPage({
     required String image,
     required String title,
     required String desc,
@@ -111,14 +122,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             style: const TextStyle(fontSize: 15),
           ),
         ),
-        const Spacer(),ElevatedButton(
+        const Spacer(),
+        ElevatedButton(
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xFF017CFD),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
             fixedSize: const Size(200, 56),
-          ),onPressed: onPressed,
+          ),
+          onPressed: onPressed,
           child: Text(buttonText, style: const TextStyle(fontSize: 20)),
         ),
         const SizedBox(height: 30),
