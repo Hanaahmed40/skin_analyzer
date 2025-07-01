@@ -1,3 +1,4 @@
+import 'package:event_planning/api_service/request_response.dart';
 import 'package:flutter/material.dart';
 
 import '../models/predict_response.dart';
@@ -6,10 +7,12 @@ import 'predict_detail_item.dart';
 class DiagnosisPredictionDialogContent extends StatelessWidget {
   const DiagnosisPredictionDialogContent({
     super.key,
-    required this.prediction,
+    this.fakePrediction,
+    this.prediction,
   });
 
-  final PredictResponse prediction;
+  final PredictResponse? fakePrediction;
+  final RequestResponse? prediction;
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +29,13 @@ class DiagnosisPredictionDialogContent extends StatelessWidget {
             Expanded(
               child: PredictDetailItem(
                 title: "Disease",
-                detail: prediction.disease,
+                detail: fakePrediction?.disease ?? 'Unknown Disease',
               ),
             ),
             Expanded(
               child: PredictDetailItem(
-                  title: "Description", detail: prediction.description),
+                  title: "Description",
+                  detail: fakePrediction?.description ?? 'Unknown Description'),
             ),
           ],
         ),
@@ -42,12 +46,14 @@ class DiagnosisPredictionDialogContent extends StatelessWidget {
             Expanded(
               child: PredictDetailItem(
                 title: "Severity",
-                detail: prediction.severity,
+                detail: fakePrediction?.severity ?? 'Unknown Severity',
               ),
             ),
             Expanded(
               child: PredictDetailItem(
-                  title: "Recommendation", detail: prediction.recommendation),
+                  title: "Recommendation",
+                  detail: fakePrediction?.recommendation ??
+                      'Unknown Recommendation'),
             ),
           ],
         ),
@@ -58,13 +64,15 @@ class DiagnosisPredictionDialogContent extends StatelessWidget {
             Expanded(
               child: PredictDetailItem(
                 title: "Suggested Treatment",
-                detail: prediction.suggestedTreatment,
+                detail:
+                    fakePrediction?.suggestedTreatment ?? 'Unknown Treatment',
               ),
             ),
             Expanded(
               child: PredictDetailItem(
                 title: "Confidence",
-                detail: prediction.confidence.toStringAsFixed(2),
+                detail: fakePrediction?.confidence.toStringAsFixed(2) ??
+                    'Unknown Confidence',
               ),
             ),
           ],

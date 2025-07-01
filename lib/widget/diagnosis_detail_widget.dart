@@ -1,3 +1,4 @@
+import 'package:event_planning/api_service/request_response.dart';
 import 'package:event_planning/core/helpers/extensions.dart';
 import 'package:flutter/material.dart';
 
@@ -9,10 +10,12 @@ import 'picked_img_bloc_selector.dart';
 class DiagnosisDetailWidget extends StatelessWidget {
   const DiagnosisDetailWidget({
     super.key,
-    required this.prediction,
+    this.fakePrediction,
+    this.prediction,
   });
 
-  final PredictResponse prediction;
+  final PredictResponse? fakePrediction;
+  final RequestResponse? prediction;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +28,8 @@ class DiagnosisDetailWidget extends StatelessWidget {
         ElevatedButton.icon(
           onPressed: () => context.showAppDialog(
             title: "Prediction Details",
-            contentWidget:
-                DiagnosisPredictionDialogContent(prediction: prediction),
+            contentWidget: DiagnosisPredictionDialogContent(
+                fakePrediction: fakePrediction),
           ),
           icon: Icon(Icons.info, color: AppColors.whiteColor),
           label: Text("Show details",
