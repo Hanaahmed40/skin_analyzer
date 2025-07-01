@@ -1,8 +1,11 @@
+import 'package:event_planning/core/helpers/extensions.dart';
 import 'package:event_planning/cubits/profile_cubit.dart';
 import 'package:event_planning/di.dart';
 import 'package:event_planning/widget/logout_bloc_listener.dart';
 import 'package:event_planning/widget/profile_img_bloc_selector.dart';
+import 'package:event_planning/widget/profile_pass_field_bloc_selector.dart';
 import 'package:event_planning/widget/profile_text_fields.dart';
+import 'package:event_planning/widget/update_pass_button_bloc_consumer.dart';
 import 'package:event_planning/widget/update_user_button_bloc_consumer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,10 +39,38 @@ class ProfileScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 spacing: 24,
-                children: const [
-                  ProfileImgBlocSelector(),
-                  ProfileTextFields(),
-                  UpdateUserButtonBlocConsumer(),
+                children: [
+                  const ProfileImgBlocSelector(),
+                  const ProfileTextFields(),
+                  Row(
+                    spacing: 16,
+                    children: [
+                      const Expanded(child: UpdateUserButtonBlocConsumer()),
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            context.showAppDialog(
+                              contentWidget: BlocProvider.value(
+                                value: getIt.get<ProfileCubit>(),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: const Column(
+                                    spacing: 16,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      ProfilePassFieldBlocSelector(),
+                                      UpdatePassButtonBlocConsumer(),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                          child: Text('Update password'),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),

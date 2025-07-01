@@ -34,7 +34,7 @@ class UpdateUserButtonBlocConsumer extends StatelessWidget {
 
   bool _listenWhen(ProfileState state) {
     return state.status == ProfileStatus.updateUserLoading ||
-        state.status == ProfileStatus.updateImgSuccess ||
+        state.status == ProfileStatus.updateUserSuccess ||
         state.status == ProfileStatus.updateUserFailure ||
         state.status == ProfileStatus.updateImgSuccess ||
         state.status == ProfileStatus.updateImgLoading ||
@@ -51,11 +51,13 @@ class UpdateUserButtonBlocConsumer extends StatelessWidget {
         context.popTop();
         context.showAppDialog(content: state.errorMessage!);
       case ProfileStatus.updateUserSuccess:
+        await UserModel.deleteSecuredUser();
+        context.popTop();
         currentUser = state.user;
         await UserModel.secureUser(state.user!);
-        context.popTop();
         context.showAppDialog(content: 'User updated successfully');
       case ProfileStatus.updateImgSuccess:
+        await UserModel.deleteSecuredUser();
         currentUser = currentUser!.copyWith(avatarUrl: state.avatarUrl);
         await UserModel.secureUser(state.user!);
         context.popTop();

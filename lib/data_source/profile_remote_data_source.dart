@@ -37,8 +37,15 @@ class ProfileRemoteDataSource {
 
   Future<void> _updateUserDataInDatabase(AuthParams params) async {
     final userJson = await _fetchUserFromDatabase();
-    await _supabaseClient.from(AppUtils.profilesTable).update(
-        {...userJson, ...params.toJson()}).eq('userId', currentUser!.userId!);
+    final requestParams = AuthParams(
+      name: params.name ?? currentUser!.name,
+      email: params.email ?? currentUser!.email,
+      password: params.password ?? currentUser!.password,
+    );
+    await _supabaseClient
+        .from(AppUtils.profilesTable)
+        .update({...userJson, ...requestParams.toJson()}).eq(
+            'userId', currentUser!.userId!);
   }
 
   Future<PostgrestMap> _fetchUserFromDatabase() => _supabaseClient

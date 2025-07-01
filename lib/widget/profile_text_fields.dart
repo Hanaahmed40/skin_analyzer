@@ -26,7 +26,6 @@ class ProfileTextFields extends StatelessWidget {
           prefix: Icon(Icons.email_sharp),
           obscureText: false,
         ),
-        const ProfilePassFieldBlocSelector(),
       ],
     );
   }
