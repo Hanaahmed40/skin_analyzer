@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../core/supabase/supabase_request_result.dart';
 import '../repositories/main_repo.dart';
-import 'package:event_planning/models/predict_response.dart'; // تأكد إنه متضاف
 
 class DiagnosisCubit extends Cubit<DiagnosisState> {
   final MainRepo _mainRepo;

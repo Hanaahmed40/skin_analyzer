@@ -1,3 +1,7 @@
+import 'package:dio/dio.dart';
+import 'package:event_planning/api_service/api_repo.dart';
+import 'package:event_planning/api_service/api_service.dart';
+import 'package:event_planning/api_service/dio_factory.dart';
 import 'package:event_planning/cubits/diagnosis_cubit.dart';
 import 'package:event_planning/cubits/profile_cubit.dart';
 import 'package:event_planning/cubits/register_cubit.dart';
@@ -29,6 +33,10 @@ void setupDI() {
   // Registering core
   getIt.registerLazySingleton<InternetChecker>(
       () => InternetChecker(getIt.get<InternetConnection>()));
+  getIt.registerLazySingleton<Dio>(() => DioFactory.getDio());
+
+  // Registering Api Services
+  getIt.registerLazySingleton<ApiService>(() => ApiService(getIt.get<Dio>()));
 
   // Registering Data Sources
   getIt.registerLazySingleton<LoginRemoteDataSource>(
@@ -49,6 +57,7 @@ void setupDI() {
       () => MainRepo(getIt.get<MainRemoteDataSource>()));
   getIt.registerLazySingleton<ProfileRepo>(
       () => ProfileRepo(getIt.get<ProfileRemoteDataSource>()));
+  getIt.registerLazySingleton<ApiRepo>(() => ApiRepo(getIt.get<ApiService>()));
 
   // Registering Cubits
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt.get<LoginRepo>()));
@@ -56,7 +65,8 @@ void setupDI() {
       () => RegisterCubit(getIt.get<RegisterRepo>()));
   getIt.registerFactory<MainCubit>(() => MainCubit(getIt.get<MainRepo>()));
   getIt.registerFactory<DiagnosisCubit>(
-      () => DiagnosisCubit(getIt.get<MainRepo>()));
+    () => DiagnosisCubit(getIt.get<MainRepo>(), getIt.get<ApiRepo>()),
+  );
   getIt.registerFactory<ProfileCubit>(
       () => ProfileCubit(getIt.get<ProfileRepo>()));
 }
