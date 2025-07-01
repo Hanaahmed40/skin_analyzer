@@ -97,6 +97,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+<<<<<<< Updated upstream
   build:
     dependency: transitive
     description:
@@ -161,6 +162,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "8.10.1"
+=======
+>>>>>>> Stashed changes
   cached_network_image:
     dependency: "direct main"
     description:
@@ -869,6 +872,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+<<<<<<< Updated upstream
   package_config:
     dependency: transitive
     description:
@@ -877,6 +881,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+=======
+>>>>>>> Stashed changes
   path:
     dependency: transitive
     description:
