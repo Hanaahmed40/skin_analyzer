@@ -1,9 +1,10 @@
 import 'dart:async';
-import 'package:event_planning/core/router/routes.dart';
 import 'package:event_planning/core/utils/app_utils.dart';
+import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:event_planning/core/router/routes.dart';
 import 'package:event_planning/core/utils/functions/check_if_onboarding_is_visited.dart';
 import 'package:event_planning/core/utils/functions/check_if_user_is_logged_in.dart';
-import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -25,21 +26,26 @@ class _SplashScreenState extends State<SplashScreen>
       vsync: this,
       duration: const Duration(seconds: 2),
     );
+
     _animation = CurvedAnimation(
       parent: _controller,
       curve: Curves.easeIn,
     );
+
     _controller.forward();
 
-    Timer(const Duration(seconds: 4), () async {
+    Timer(const Duration(seconds: 8), () async {
       await checkIfOnboardingIsVisited();
       await checkIfIsUserLoggedIn();
 
       if (!isOnboardingVisited) {
         Navigator.pushReplacementNamed(context, Routes.onboarding);
       } else {
-        Navigator.pushReplacementNamed(
-            context, isUserLoggedIn ? Routes.home : Routes.login);
+        if (isUserLoggedIn) {
+          Navigator.pushReplacementNamed(context, Routes.home);
+        } else {
+          Navigator.pushReplacementNamed(context, Routes.login);
+        }
       }
     });
   }
