@@ -1,13 +1,19 @@
-import 'dart:io';
-
 class DiagnosisRecord {
-  final File image;         // الصورة اللي المستخدم اختارها
-  final String result;      // نتيجة التحليل (نص زي "Healthy skin detected")
-  final DateTime date;      // وقت التشخيص
+  final String imageUrl;
+  final String result;
+  final DateTime date;
 
   DiagnosisRecord({
-    required this.image,
+    required this.imageUrl,
     required this.result,
     required this.date,
   });
+
+  factory DiagnosisRecord.fromJson(Map<String, dynamic> json) {
+    return DiagnosisRecord(
+      imageUrl: json['image_url'],
+      result: json['disease'],
+      date: DateTime.parse(json['created_at']),
+    );
+  }
 }

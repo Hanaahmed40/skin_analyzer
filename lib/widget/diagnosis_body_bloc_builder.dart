@@ -18,7 +18,7 @@ class DiagnosisBodyBlocBuilder extends StatelessWidget {
     );
   }
 
-  StatelessWidget _builder(DiagnosisState state) {
+  StatelessWidget builder(DiagnosisState state) {
     switch (state.status) {
       case DiagnosisStateStatus.predictLoading:
         return const DiagnosisLoadingWidget();
@@ -44,7 +44,7 @@ class DiagnosisBodyBlocBuilder extends StatelessWidget {
     }
   }
 
-  bool _buildWhen(DiagnosisStateStatus status) {
+  bool buildWhen(DiagnosisStateStatus status) {
     return status == DiagnosisStateStatus.predictLoading ||
         status == DiagnosisStateStatus.predictSuccess ||
         status == DiagnosisStateStatus.predictFailure;

@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:event_planning/utils/app_colors.dart';
 import 'package:event_planning/widget/picked_img_bloc_selector.dart';
 import 'package:flutter/material.dart';

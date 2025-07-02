@@ -1,4 +1,4 @@
-import 'dart:io' show File;
+//import 'dart:io' show File;
 
 import 'package:event_planning/core/supabase/supabase_request_result.dart';
 import 'package:event_planning/core/utils/app_utils.dart';
@@ -17,7 +17,7 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   final nameController = TextEditingController(text: currentUser!.name);
   final emailController = TextEditingController(text: currentUser!.email);
-  final passwordController = TextEditingController(text: currentUser!.password);
+  final passwordController = TextEditingController();
 
   void togglePassVisibility() {
     emit(state.copyWith(
@@ -26,28 +26,38 @@ class ProfileCubit extends Cubit<ProfileState> {
     ));
   }
 
-  void updatePassword() async {
-    emit(state.copyWith(status: ProfileStatus.updatePassLoading));
-    final result = await _profileRepo.updateProfile(AuthParams(
-      password: passwordController.text.trim(),
+ void updatePassword() async {
+  final password = passwordController.text.trim();
+
+  if (password.length < 6) {
+    emit(state.copyWith(
+      status: ProfileStatus.updatePassFailure,
+      errorMessage: 'Password must be at least 6 characters',
     ));
-    switch (result) {
-      case SupabaseRequestSuccess(:final data):
-        emit(state.copyWith(
-          status: ProfileStatus.updatePassSuccess,
-          user: data,
-        ));
-        break;
-      case SupabaseRequestFailure(:final errorModel):
-        emit(state.copyWith(
-          status: ProfileStatus.updatePassFailure,
-          errorMessage: errorModel.message,
-        ));
-        break;
-      default:
-        break;
-    }
+    return;
   }
+
+  emit(state.copyWith(status: ProfileStatus.updatePassLoading));
+  final result = await _profileRepo.updatePassword(AuthParams(
+    password: password,
+  ));
+
+  switch (result) {
+    case SupabaseRequestSuccess(:final data):
+      emit(state.copyWith(
+        status: ProfileStatus.updatePassSuccess,
+        user: data,
+      ));
+      break;
+    case SupabaseRequestFailure(:final errorModel):
+      emit(state.copyWith(
+        status: ProfileStatus.updatePassFailure,
+        errorMessage: errorModel.message,
+      ));
+      break;
+  }
+}
+
 
   void updateUser() async {
     emit(state.copyWith(status: ProfileStatus.updateUserLoading));
@@ -68,8 +78,8 @@ class ProfileCubit extends Cubit<ProfileState> {
           errorMessage: errorModel.message,
         ));
         break;
-      default:
-        break;
+    //  default:
+      //  break;
     }
   }
 
@@ -101,8 +111,8 @@ class ProfileCubit extends Cubit<ProfileState> {
           errorMessage: errorModel.message,
         ));
         break;
-      default:
-        break;
+    //  default:
+      //  break;
     }
   }
 
@@ -119,8 +129,8 @@ class ProfileCubit extends Cubit<ProfileState> {
           errorMessage: errorModel.message,
         ));
         break;
-      default:
-        break;
+  //    default:
+    //    break;
     }
   }
 
