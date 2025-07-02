@@ -3,7 +3,7 @@ import 'package:event_planning/cubits/profile_cubit.dart';
 import 'package:event_planning/di.dart';
 import 'package:event_planning/widget/logout_bloc_listener.dart';
 import 'package:event_planning/widget/profile_img_bloc_selector.dart';
-import 'package:event_planning/widget/profile_pass_field_bloc_selector.dart';
+//import 'package:event_planning/widget/profile_pass_field_bloc_selector.dart';
 import 'package:event_planning/widget/profile_text_fields.dart';
 import 'package:event_planning/widget/update_pass_button_bloc_consumer.dart';
 import 'package:event_planning/widget/update_user_button_bloc_consumer.dart';
@@ -51,17 +51,33 @@ class ProfileScreen extends StatelessWidget {
                           onPressed: () {
                             context.showAppDialog(
                               contentWidget: BlocProvider.value(
-                                value: getIt.get<ProfileCubit>(),
+                                value: context.read<ProfileCubit>(),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: const Column(
-                                    spacing: 16,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      ProfilePassFieldBlocSelector(),
-                                      UpdatePassButtonBlocConsumer(),
-                                    ],
-                                  ),
+                                 child: Column(
+  mainAxisSize: MainAxisSize.min,
+  children: [
+    TextFormField(
+      controller: context.read<ProfileCubit>().passwordController,
+      obscureText: context.watch<ProfileCubit>().state.isPassObscure,
+      decoration: InputDecoration(
+        labelText: 'New Password',
+        suffixIcon: IconButton(
+          icon: Icon(
+            context.watch<ProfileCubit>().state.isPassObscure
+                ? Icons.visibility_off
+                : Icons.visibility,
+          ),
+          onPressed: () =>
+              context.read<ProfileCubit>().togglePassVisibility(),
+        ),
+      ),
+    ),
+    const SizedBox(height: 16),
+    const UpdatePassButtonBlocConsumer(),
+  ],
+),
+
                                 ),
                               ),
                             );

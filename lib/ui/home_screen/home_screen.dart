@@ -4,14 +4,15 @@ import 'package:event_planning/cubits/main_cubit.dart';
 //import 'package:event_planning/providers/app_theme_provider.dart';
 import 'package:event_planning/ui/home_screen/pages/analysisPage.dart';
 import 'package:event_planning/ui/home_screen/pages/diagnosisPage.dart';
-import 'package:event_planning/ui/home_screen/pages/profile_screen.dart';
-import 'package:event_planning/utils/app_colors.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+//import 'package:event_planning/ui/home_screen/pages/profile_screen.dart'; // حذفناها
 import 'package:event_planning/ui/home_screen/pages/history_page.dart';
 
 import '../../widget/random_tip_content_bloc_selector.dart';
 import '../../widget/show_random_tip_icon_bloc_builder.dart';
+
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:event_planning/utils/app_colors.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'home_screen';
@@ -24,23 +25,22 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
+  // حذفنا صفحة البروفايل، بقيت صفحتين فقط
   final List<Widget> _pages = [
     AnalysisPage(),
-    HistoryPage(history: diagnosisHistory),
-    ProfileScreen(),
+    HistoryPage(),
   ];
 
   void onTabTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    if (index >= 0 && index < _pages.length) {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-   // var height = MediaQuery.of(context).size.height;
-    //var languageProvider = Provider.of<AppLanguageProvider>(context);
-    //var themeProvider = Provider.of<AppThemeProvider>(context);
     return Scaffold(
       body: _pages[_selectedIndex],
       floatingActionButton: FloatingActionButton(
@@ -58,11 +58,10 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomAppBar(
         color: AppColors.primaryLight,
         elevation: 10,
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         notchMargin: 10,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          spacing: 40,
           children: [
             IconButton(
               icon: Icon(
@@ -80,17 +79,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               onPressed: () => onTabTapped(1),
             ),
-            IconButton(
-              icon: Icon(
-                Icons.person_3,
-                color: AppColors.whiteColor,
-                size: 35,
-              ),
-              onPressed: () => onTabTapped(2),
-            ),
+            // حذفنا زر البروفايل
           ],
         ),
       ),
     );
   }
 }
+

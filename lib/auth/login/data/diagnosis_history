@@ -1,3 +1,0 @@
-import 'diagnosis_record.dart';
-
-List<DiagnosisRecord> diagnosisHistory = [];

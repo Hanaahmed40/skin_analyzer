@@ -1,7 +1,7 @@
 import 'package:event_planning/cubits/profile_cubit.dart';
 import 'package:event_planning/l10n/app_localizations.dart';
 import 'package:event_planning/widget/custom_text_field.dart';
-import 'package:event_planning/widget/profile_pass_field_bloc_selector.dart';
+//import 'package:event_planning/widget/profile_pass_field_bloc_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

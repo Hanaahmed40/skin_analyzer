@@ -13,7 +13,7 @@ class ProfilePassFieldBlocSelector extends StatelessWidget {
     return BlocSelector<ProfileCubit, ProfileState, bool>(
       selector: (state) => state.isPassObscure,
       builder: (context, isPasswordObscure) => CustomTextField(
-        controller: context.read<ProfileCubit>().passwordController,
+       // controller: context.read<ProfileCubit>().passwordController,
         hintText: AppLocalizations.of(context)!.password,
         suffix: IconButton(
             onPressed: () {
