@@ -1,18 +1,18 @@
-import 'package:event_planning/auth/login/presentation/cubits/login_cubit.dart';
-import 'package:event_planning/cubits/diagnosis_cubit.dart';
-import 'package:event_planning/cubits/register_cubit.dart';
-import 'package:event_planning/di.dart';
-import 'package:event_planning/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../forget_password/forget_screen.dart';
-import '../../auth/login/presentation/register_screen.dart';
 import '../../auth/login/presentation/login_screen.dart';
+import '../../auth/login/presentation/register_screen.dart';
+import '../../forget_password/forget_screen.dart';
 import '../../ui/home_screen/home_screen.dart';
 import '../../ui/home_screen/pages/analysisPage.dart';
 import '../../ui/home_screen/pages/diagnosisPage.dart';
+import '../../ui/onboarding_screen.dart';
+import '../../cubits/diagnosis_cubit.dart';
+import '../../cubits/register_cubit.dart';
+import '../../auth/login/presentation/cubits/login_cubit.dart';
 import '../utils/app_utils.dart';
+import 'package:event_planning/di.dart';
+import '../../ui/splash_screen.dart'; 
 import 'routes.dart';
 
 class AppRouter {
@@ -20,54 +20,55 @@ class AppRouter {
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case '/': // initial route
-        return isOnboardingVisited == false
-            ? _onboardingRoute()
-            : (isUserLoggedIn ? _homeRoute() : _loginRoute());
+      case '/': // Initial route => SplashScreen
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
+
+      case Routes.onboarding:
+        return _onboardingRoute();
 
       case Routes.login:
         return _loginRoute();
 
       case Routes.register:
         return MaterialPageRoute(
-            builder: (_) => BlocProvider<RegisterCubit>(
-                  create: (context) => getIt.get<RegisterCubit>(),
-                  child: RegisterScreen(),
-                ));
+          builder: (_) => BlocProvider<RegisterCubit>(
+            create: (context) => getIt.get<RegisterCubit>(),
+            child: const RegisterScreen(),
+          ),
+        );
 
       case Routes.forgotPass:
-        return MaterialPageRoute(builder: (_) => ForgetScreen());
+        return MaterialPageRoute(builder: (_) => const ForgetScreen());
 
       case Routes.home:
         return _homeRoute();
 
       case Routes.analysis:
-        return MaterialPageRoute(builder: (_) => AnalysisPage());
+        return MaterialPageRoute(builder: (_) => const AnalysisPage());
 
       case Routes.diagnosis:
         return MaterialPageRoute(
-            builder: (_) => BlocProvider<DiagnosisCubit>(
-                  create: (context) {
-                    return getIt.get<DiagnosisCubit>()..fetchRandomPrediction();
-                    // return getIt.get<DiagnosisCubit>()..predict();
-                  },
-                  child: DiagnosisPage(),
-                ));
+          builder: (_) => BlocProvider<DiagnosisCubit>(
+            create: (context) =>
+                getIt.get<DiagnosisCubit>()..fetchRandomPrediction(),
+            child: const DiagnosisPage(),
+          ),
+        );
 
       default:
         return _unFoundRoute();
     }
   }
 
-  static MaterialPageRoute<dynamic> _onboardingRoute() {
-    return MaterialPageRoute(builder: (_) => OnBoardingScreen());
+  static MaterialPageRoute _onboardingRoute() {
+    return MaterialPageRoute(builder: (_) => const OnBoardingScreen());
   }
 
-  static MaterialPageRoute<dynamic> _homeRoute() {
-    return MaterialPageRoute(builder: (_) => HomeScreen());
+  static MaterialPageRoute _homeRoute() {
+    return MaterialPageRoute(builder: (_) => const HomeScreen());
   }
 
-  static MaterialPageRoute<dynamic> _loginRoute() {
+  static MaterialPageRoute _loginRoute() {
     return MaterialPageRoute(
       builder: (_) => BlocProvider(
         create: (context) => getIt.get<LoginCubit>(),
@@ -78,10 +79,10 @@ class AppRouter {
 
   static Route<dynamic> _unFoundRoute() {
     return MaterialPageRoute(
-      builder: (context) => Scaffold(
+      builder: (context) => const Scaffold(
         body: Center(
           child: Text(
-            "Un found route",
+            "Unfound route",
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,

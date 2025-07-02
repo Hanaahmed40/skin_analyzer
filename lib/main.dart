@@ -12,6 +12,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'bloc_observer.dart';
 import 'core/router/app_router.dart';
 import 'cubits/main_cubit.dart';
+import 'package:event_planning/core/helpers/cache_helper.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +23,7 @@ Future<void> main() async {
     anonKey:
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBoampsZ3hrd2NrZWt6dHJndWJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTExODY3NjIsImV4cCI6MjA2Njc2Mjc2Mn0.qfIBsaTEAOsK0J7I5BI7W_kvjTRzBgDvY6qfiz1wJ8g',
   );
+  // await CacheHelper.removeData('onboarding');
   await checkIfOnboardingIsVisited();
   await checkIfIsUserLoggedIn();
   runApp(MultiProvider(providers: [
