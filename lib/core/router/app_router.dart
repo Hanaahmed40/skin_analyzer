@@ -10,7 +10,7 @@ import '../../ui/onboarding_screen.dart';
 import '../../cubits/diagnosis_cubit.dart';
 import '../../cubits/register_cubit.dart';
 import '../../auth/login/presentation/cubits/login_cubit.dart';
-import '../utils/app_utils.dart';
+//import '../utils/app_utils.dart';
 import 'package:event_planning/di.dart';
 import '../../ui/splash_screen.dart'; 
 import 'routes.dart';

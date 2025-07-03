@@ -35,7 +35,7 @@ class DiagnosisState {
   }) {
     return DiagnosisState(
       status: status ?? this.status,
-      fakePrediction: fakePrediction ?? fakePrediction,
+      fakePrediction: fakePrediction ?? this.fakePrediction,
       errorMessage: errorMessage ?? this.errorMessage,
       prediction: prediction ?? this.prediction,
     );

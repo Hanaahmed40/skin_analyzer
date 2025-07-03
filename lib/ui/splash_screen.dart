@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:event_planning/core/utils/app_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+//import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:event_planning/core/router/routes.dart';
 import 'package:event_planning/core/utils/functions/check_if_onboarding_is_visited.dart';
 import 'package:event_planning/core/utils/functions/check_if_user_is_logged_in.dart';
