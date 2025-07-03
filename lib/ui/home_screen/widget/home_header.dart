@@ -9,7 +9,7 @@ class HomeHeader extends StatelessWidget {
     super.key,
     required this.username,
     required this.isDarkMode,
-    required this.onToggleTheme,
+    required this.onToggleTheme, required Null Function() onLogout,
   });
 
   @override
@@ -17,9 +17,9 @@ class HomeHeader extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 20),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color(0xFF017CFD),
-        borderRadius: const BorderRadius.only(
+        borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(16),
           bottomRight: Radius.circular(16),
         ),
@@ -28,37 +28,36 @@ class HomeHeader extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            /// ✅ Welcome + Username
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   "Welcome ✨",
-                  style: const
-                  TextStyle(fontSize: 24,
+                  style: TextStyle(
+                    fontSize: 24,
                     fontWeight: FontWeight.bold,
-                  color: Colors.white),
-
+                    color: Colors.white,
+                  ),
                 ),
                 const SizedBox(height: 5),
                 Text(
                   username,
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                 ),
               ],
             ),
-            Row(
-              children: [
-                IconButton(
-                  icon: Icon(
-                    isDarkMode ? Icons.dark_mode : Icons.light_mode,
-                    color: Colors.white,
-                  ),
-                  onPressed: onToggleTheme,
-                ),
-              ],
+
+            /// ✅ زر الوضع الليلي
+            IconButton(
+              icon: Icon(
+                isDarkMode ? Icons.dark_mode : Icons.light_mode,
+                color: Colors.white,
+              ),
+              onPressed: onToggleTheme,
             ),
           ],
         ),

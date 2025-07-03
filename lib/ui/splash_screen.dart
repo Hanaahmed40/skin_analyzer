@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 4),
     );
 
     _animation = CurvedAnimation(
@@ -65,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen>
             opacity: _animation,
             child: SizedBox.expand(
               child: Image.asset(
-                'assets/images/img.jpg',
+                'assets/images/n_splash.jpg',
                 fit: BoxFit.cover,
               ),
             ),

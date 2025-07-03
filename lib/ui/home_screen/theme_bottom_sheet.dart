@@ -14,24 +14,23 @@ class ThemeBottomSheet extends StatefulWidget {
 class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var themeProvider = Provider.of<AppThemeProvider>(context);
+    final height = MediaQuery.of(context).size.height;
+    final themeProvider = Provider.of<AppThemeProvider>(context);
+
     return Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           InkWell(
-              onTap: () {
-                themeProvider.changeTheme(ThemeMode.dark);
-              },
-              child: themeProvider.isDarkMod()
-                  ? getSelectedItemWidget(AppLocalizations.of(context)!.dark)
-                  : getUnselectedItemWidget(
-                      AppLocalizations.of(context)!.dark)),
-          SizedBox(
-            height: height * 0.02,
+            onTap: () {
+              themeProvider.changeTheme(ThemeMode.dark);
+            },
+            child: themeProvider.isDarkMod()
+                ? getSelectedItemWidget(AppLocalizations.of(context)!.dark)
+                : getUnselectedItemWidget(AppLocalizations.of(context)!.dark),
           ),
+          SizedBox(height: height * 0.02),
           InkWell(
             onTap: () {
               themeProvider.changeTheme(ThemeMode.light);
@@ -51,10 +50,11 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
       children: [
         Text(
           text,
-          style: TextStyle(
-              color: AppColors.primaryLight,
-              fontWeight: FontWeight.bold,
-              fontSize: 22),
+          style: const TextStyle(
+            color: AppColors.primaryLight,
+            fontWeight: FontWeight.bold,
+            fontSize: 22,
+          ),
         ),
         const Icon(
           Icons.check,
@@ -68,10 +68,11 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
   Widget getUnselectedItemWidget(String text) {
     return Text(
       text,
-      style: TextStyle(
-          color: AppColors.primaryDark,
-          fontWeight: FontWeight.bold,
-          fontSize: 22),
+      style: const TextStyle(
+        color: AppColors.primaryDark,
+        fontWeight: FontWeight.bold,
+        fontSize: 22,
+      ),
     );
   }
 }
