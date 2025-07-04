@@ -48,18 +48,7 @@ class AnalysisPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(25)),
               ),
             ),
-            ElevatedButton.icon(
-              onPressed: () =>
-                  context.read<MainCubit>().pickImg(ImageSource.camera),
-              icon: Icon(Icons.camera_alt, color: AppColors.whiteColor),
-              label: Text('Take a Photo',
-                  style: TextStyle(color: AppColors.whiteColor)),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primaryLight,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25)),
-              ),
-            ),
+         
           ],
         ),
       ),

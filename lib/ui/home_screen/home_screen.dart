@@ -38,10 +38,11 @@ class HomeScreen extends StatelessWidget {
 
           /// ✅ صورة تتغير حسب الثيم
           Center(
+      
             child: Image.asset(
               imagePath,
-              width: 400,
-              height: 400,
+            //  width: 400,
+              // height: 400,
               fit: BoxFit.contain,
             ),
           ),
