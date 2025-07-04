@@ -70,20 +70,6 @@ class _SplashScreenState extends State<SplashScreen>
               ),
             ),
           ),
-          Positioned(
-            bottom: 30,
-            left: 0,
-            right: 0,
-            child: Center(
-              child: Text(
-                "Developed by the team",
-                style: TextStyle(
-                  color: Colors.grey.shade200,
-                  fontSize: 16,
-                ),
-              ),
-            ),
-          ),
         ],
       ),
     );

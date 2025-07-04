@@ -68,7 +68,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   "Personalize Your Experience",
                   style: TextStyle(
                     color: Color(0xFF017CFD),
-                    fontSize: 24,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -79,9 +79,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 child: FadeInUp(
                   delay: Duration(milliseconds: 1100),
                   child: Text(
-                    "Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style.",
+                    "Choose your preferred theme to get started with a comfortable, tailored experience that suits your style.",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 15),
+                    style: TextStyle(fontSize: 16),
                   ),
                 ),
               ),
@@ -101,7 +101,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         duration: Duration(milliseconds: 500),
                         curve: Curves.easeIn);
                   },
-                  child: Text("Next", style: TextStyle(fontSize: 20)),
+                  child: Text("Next", style: TextStyle(fontSize: 20 ,
+                  color: Colors.white)),
                 ),
               ),
               SizedBox(height: 30),
@@ -125,7 +126,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFF017CFD),
-                    fontSize: 24,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -136,9 +137,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 child: FadeInUp(
                   delay: Duration(milliseconds: 1100),
                   child: Text(
-                    "Your skin deserves the best care! With Skin Analyser.AI, you can scan your skin in seconds and let our AI detect potential skin conditions. Get instant insights, expert-backed recommendations, and personalized skincare tips.",
+                    "Your skin deserves the best care! \n With Skin Analyser AI, you can scan your skin in seconds and let our AI detect potential skin conditions.  "
+                        "Get instant insights, expert-backed recommendations, and personalized skincare tips.",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 15),
+                    style: TextStyle(fontSize: 16),
                   ),
                 ),
               ),
@@ -158,7 +160,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         duration: Duration(milliseconds: 500),
                         curve: Curves.easeIn);
                   },
-                  child: Text("Next", style: TextStyle(fontSize: 20)),
+                  child: Text("Next", style: TextStyle(fontSize: 20 ,
+                  color: Colors.white)),
                 ),
               ),
               SizedBox(height: 30),
@@ -183,7 +186,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFF017CFD),
-                    fontSize: 24,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -194,9 +197,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 child: FadeInUp(
                   delay: Duration(milliseconds: 1100),
                   child: Text(
-                    "Tracking your skin’s progress is important—but sharing it makes it even better! Stay connected with friends, exchange tips, and celebrate your improvements together.",
+                    "Tracking your skin’s progress is important—but sharing it makes it even better!\n Stay connected with friends, exchange tips, and celebrate your improvements together.",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 15),
+                    style: TextStyle(fontSize: 16),
                   ),
                 ),
               ),
@@ -211,7 +214,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     fixedSize: Size(200, 56),
                   ),
                   onPressed: () => _goLogin(),
-                  child: Text("Let's Start", style: TextStyle(fontSize: 20)),
+                  child: Text("Let's Start", style: TextStyle(fontSize: 20 ,
+                  color: Colors.white)),
                 ),
               ),
               SizedBox(height: 30),

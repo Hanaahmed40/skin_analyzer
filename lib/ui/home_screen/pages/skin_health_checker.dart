@@ -129,7 +129,7 @@ class _SkinHealthCheckerState extends State<SkinHealthChecker> {
               "Answer the following questions to evaluate your overall skin health.",style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
-                color: textColor,
+                color: mainColor,
               ),
               textAlign: TextAlign.center,
             ),
@@ -203,7 +203,7 @@ class _SkinHealthCheckerState extends State<SkinHealthChecker> {
                   ),
                   child: const Text(
                     "Check My Skin Health",
-                    style: TextStyle(fontSize: 18, color: Colors.black),
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -213,10 +213,10 @@ class _SkinHealthCheckerState extends State<SkinHealthChecker> {
                     side: BorderSide(color: mainColor, width: 2.5),
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                   ),
-                  child: const Text(
+                  child:  Text(
                     "Reset",style: TextStyle(
                       fontSize: 18,
-                      color: Colors.black,
+                      color: mainColor,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
