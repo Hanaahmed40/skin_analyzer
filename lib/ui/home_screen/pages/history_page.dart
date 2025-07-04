@@ -6,7 +6,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../utils/app_colors.dart';
 import 'diagnosis_record.dart';
- // أو المسار الصحيح للملف اللي فيه fetchHistory// مسار دالة fetchHistory
+ 
 
 class HistoryPage extends StatelessWidget {
   const HistoryPage({super.key});
