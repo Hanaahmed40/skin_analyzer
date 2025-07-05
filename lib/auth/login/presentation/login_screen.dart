@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: height * 0.02,
               ),
-              InkWell(
+            /* InkWell(
                 onTap: () => context.pushNamed(Routes.forgotPass),
                 child: Text(
                   AppLocalizations.of(context)!.forget_password,
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     decorationColor: AppColors.primaryLight,
                   ),
                 ),
-              ),
+              ),*/
               SizedBox(
                 height: height * 0.02,
               ),

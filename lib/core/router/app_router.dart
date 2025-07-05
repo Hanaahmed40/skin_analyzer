@@ -37,8 +37,8 @@ class AppRouter {
           ),
         );
 
-      case Routes.forgotPass:
-        return MaterialPageRoute(builder: (_) => const ForgetScreen());
+      //case Routes.forgotPass:
+        // return MaterialPageRoute(builder: (_) => const ForgetScreen());
 
       case Routes.home:
         return _homeRoute();
